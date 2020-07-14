@@ -163,7 +163,7 @@ class psg_contract(models.Model):
         string='Site Address',
         required=False)
     site_email = fields.Char('Email')
-    site_mobile = fields.char('Mobile')
+    site_mobile = fields.Char('Mobile')
     site_phone = fields.Char('Phone')
 
 
