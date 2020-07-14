@@ -164,7 +164,7 @@ class psg_contract(models.Model):
         required=False)
     site_email = fields.Char('Email')
     site_mobile = fields.char('Mobile')
-    site_phone = fields.char('Phone')
+    site_phone = fields.Char('Phone')
 
 
     # Date Information
@@ -185,7 +185,7 @@ class psg_contract(models.Model):
     required=False, )
 
     service_frequecy = fields.Many2one(
-        comodel_name='rpsg.contract_service_frequency',
+        comodel_name='psg.contract_service_frequency',
         string='Service Frequency',
         required=False)
 
