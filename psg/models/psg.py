@@ -23,8 +23,12 @@ class psg_fire_service(models.Model):
     _description = 'Fire Brigades'
 
     name = fields.Char('Brigade')
-    line_no = fields.Char('Line Number')
     auth_code = fields.Char('Authority Code')
+    street = fields.Char('Address 1')
+    street2 = fields.Char('Address 1')
+    city = fields.Char('Address 1')
+    county = fields.Char('Address 1')
+    postcode = fields.Char('Address 1')
 
 
 class psg_police_service(models.Model):
@@ -32,7 +36,6 @@ class psg_police_service(models.Model):
     _description = 'Police Service'
 
     name = fields.Char('Police Authority')
-    line_no = fields.Char('Line Number')
     area_code = fields.Char('Area Code')
     verified = fields.Boolean('Verified')
     contact = fields.Char('Contact')
@@ -41,3 +44,9 @@ class psg_police_service(models.Model):
     level1_months = fields.Integer('Level 1 Months')
     level2_incidents = fields.Integer('Level 2 Incidents')
     level2_months = fields.Integer('Level 2 Months')
+    street = fields.Char('Address 1')
+    street2 = fields.Char('Address 1')
+    city = fields.Char('Address 1')
+    county = fields.Char('Address 1')
+    postcode = fields.Char('Address 1')
+
