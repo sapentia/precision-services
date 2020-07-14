@@ -111,7 +111,7 @@ class psg_contract(models.Model):
         string='System Type',
         required=False)
 
-    build standard = fields.Many2one(
+    build_standard = fields.Many2one(
         comodel_name='psg.systems',
         string='System Type',
         required=False)
