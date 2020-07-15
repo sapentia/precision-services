@@ -4,6 +4,7 @@ from odoo import models, fields, api
 
 class psg_technical(models.Model):
     _name = 'psg.technical_sys'
+    _inherit = ['mail.thread']
     _description = 'System Details'
 
     name = fields.Char('Technical Reference')

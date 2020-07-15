@@ -90,6 +90,7 @@ class psg_loss_reason(models.Model):
 
 class psg_contract(models.Model):
     _name = 'psg.contract'
+    _inherit = ['mail.thread']
     _description = 'Contracts'
 
     name = fields.Char('Contract Number')

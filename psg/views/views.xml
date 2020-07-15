@@ -5,9 +5,11 @@
       <field name="model">psg.contract</field>
       <field name="arch" type="xml">
         <tree string="Contracts">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="contact"/>
+            <field name="job_title"/>
+            <field name="health_safety"/>
         </tree>
       </field>
     </record>
@@ -22,27 +24,163 @@
             <group>
                 <group>
                     <field name="name"/>
-
+                    <field name="partner_id"/>
                 </group>
                 <group>
+                    <field name="contact"/>
+                    <field name="job_title"/>
+                    <field name="health_safety"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+
 
                 </group>
-            </group>
-            <group>
-
             </group>
             <notebook>
               <page string="System Information">
+                  <group>
+                        <group>
+                            <field name="system_type"/>
+                            <field name="build_standard"/>
+                            <field name="system_description"/>
+                            <field name="primary_signal_type"/>
+                        </group>
+                        <group>
+                            <field name="category_type"/>
+                            <field name="grade"/>
+                            <field name="system_condition"/>
+                            <field name="status"/>
+                            <field name="contract_type"/>
+                            <field name="premesis_type"/>
+                        </group>
+                    </group>
 
               </page>
-              <page string="Service Information">
-
+              <page string="Site Details">
+                  <group>
+                        <group>
+                            <field name="site_address"/>
+                            <field name="site_email"/>
+                        </group>
+                        <group>
+                            <field name="site_mobile"/>
+                            <field name="site_phone"/>
+                        </group>
+                    </group>
               </page>
-              <page string="Financial Data">
+              <page string="PMV Service Setup">
+                   <group>
+                        <group>
+                            <field name="appointment"/>
+                            <field name="service_frequecy"/>
+                            <field name="last_service_date"/>
+                            <field name="annual_date"/>
+                        </group>
+                        <group>
+                            <field name="next_service_date"/>
+                            <field name="ann_hours"/>
+                            <field name="int_hours"/>
+                        </group>
+                    </group>
+              </page>
+              <page string="Remote Monitoring">
+                   <group>
+                        <group>
+                            <field name="remote_signal"/>
+                            <field name="cd_digi"/>
+                            <field name="stu"/>
+                            <field name="remote_ip"/>
+                        </group>
+                        <group>
+                            <field name="central"/>
+                            <field name="fire_authority"/>
+                            <field name="police_authority"/>
+                            <field name="verification"/>
+                        </group>
+                    </group>
+              </page>
+               <page string="Finance">
+                   <group>
+                        <group>
+                            <field name="maint_from"/>
+                            <field name="maint_to"/>
+                            <field name="account_number"/>
+                            <field name="call_out_account"/>
+                            <field name="inv_code"/>
+                            <field name="paid_by"/>
+                            <field name="mon_rate"/>
+                            <field name="key_rate"/>
+                            <field name="guard_rate"/>
+                            <field name="call_out_includes"/>
+                        </group>
+                        <group>
+                            <field name="travel_time"/>
+                            <field name="email_invoice"/>
+                            <field name="po_req_callout"/>
+                            <field name="callout_po"/>
+                            <field name="callout_po_expires"/>
+                            <field name="po_req_main"/>
+                            <field name="maint_po"/>
+                            <field name="maint_po_expires"/>
+                            <field name="account_number"/>
+                            <field name="call_out_account"/>
+                        </group>
+                    </group>
+              </page>
+                <page string="URNs">
+                   <group>
+                       <field name="urn_ids"/>
 
+                    </group>
+              </page>
+                <page string="Private Notes}">
+                   <group>
+                       <field name="private_notes"/>
+
+                    </group>
+              </page>
+                <page string="Service Engineer Notes">
+                   <group>
+                       <group>
+                           <field name="engineer_notes"/>
+                       </group>
+                        <group>
+                            <field name="service_reminder_1"/>
+                            <field name="service_reminder_2"/>
+                            <field name="service_reminder_3"/>
+                            <field name="service_reminder_4"/>
+                        </group>
+                        <group>
+                            <field name="service_reminder_date_1"/>
+                            <field name="service_reminder_date_2"/>
+                            <field name="service_reminder_date_3"/>
+                            <field name="service_reminder_date_4"/>
+                        </group>
+                    </group>
+              </page>
+                <page string="Loss Reason">
+                   <group>
+
+                        <group>
+                            <field name="loss_date"/>
+                            <field name="loss_effective_date"/>
+                            <field name="loss_reason"/>
+
+                        </group>
+                        <group>
+                            <field name="details_removed"/>
+                            <field name="lost_serivce_pa"/>
+                            <field name="destroy_docs"/>
+                        </group>
+                    </group>
               </page>
             </notebook>
           </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
         </form>
       </field>
     </record>
@@ -86,9 +224,9 @@
       <field name="model">psg.technical_sys</field>
       <field name="arch" type="xml">
         <tree string="Technical Data">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="contract_id"/>
+            <field name="partner_id"/>
         </tree>
       </field>
     </record>
@@ -103,9 +241,11 @@
             <group>
                 <group>
                     <field name="name"/>
+                    <field name="contract_id"/>
 
                 </group>
                 <group>
+                    <field name="partner_id"/>
 
                 </group>
             </group>
@@ -113,17 +253,91 @@
 
             </group>
             <notebook>
-              <page string="System Information">
+              <page string="General Information">
+                  <group>
+                      <group>
+                          <field name="remote_reset"/>
+                          <field name="reset_by"/>
+                          <field name="reset_method"/>
+                          <field name="remote_reset_unit"/>
+                          <field name="communicator"/>
+                          <field name="ip_communicator"/>
+                          <field name="type_stu"/>
+                          <field name="extent_cover"/>
+                          <field name="cert_description"/>
+                      </group>
+                      <group>
+                          <field name="time_delay"/>
+                          <field name="cut_out"/>
+                          <field name="lead_engineer"/>
+                          <field name="panel"/>
+                          <field name="software_version"/>
+                          <field name="panel_location"/>
+                          <field name="map_ref"/>
+                          <field name="directions"/>
+                      </group>
+                </group>
 
               </page>
-              <page string="Service Information">
+              <page string="Fire Equipment Summary">
+                  <group>
+                      <group>
+                          <field name="dep_design"/>
+                          <field name="elec_cert"/>
+                          <field name="des_sched_no"/>
+                          <field name="drawings"/>
+                          <field name="other_docs"/>
+                          <field name="op_instruct"/>
+                          <field name="sys_log"/>
+                          <field name="sys_doc"/>
 
-              </page>
-              <page string="Financial Data">
+                      </group>
+                      <group>
+                          <field name="confirm_sys_audio"/>
+                          <field name="confirm_sys_visual"/>
+                          <field name="confirm_sys_other"/>
+                          <field name="confirm_wire_audio"/>
+                          <field name="confirm_wire_visual"/>
+                          <field name="confirm_wire_other"/>
+                          <field name="sound_lvl"/>
+                          <field name="sound_location"/>
+                          <field name="further_inspect"/>
+                      </group>
+                </group>
+                    <group>
+                          <field name="sys_new"/>
+                          <field name="sys_add"/>
+                          <field name="sys_alt"/>
+                          <field name="false_12"/>
+                          <field name="false_auto"/>
+                          <field name="comm_sys"/>
+                          <field name="comm_sys_date"/>
+                          <field name="review_by_date"/>
+                          <field name="review_by"/>
+                          <field name="variation"/>
+                      </group>
+                      <group>
+                          <field name="inst1_model"/>
+                          <field name="inst1_sno"/>
+                          <field name="inst2_model"/>
+                          <field name="inst2_sno"/>
+                          <field name="inst3_model"/>
+                          <field name="inst3_sno"/>
+                          <field name="inst4_model"/>
+                          <field name="inst4_sno"/>
+                          <field name="inst5_model"/>
+                          <field name="inst5_sno"/>
+                          <field name="inst6_model"/>
+                          <field name="inst6_sno"/>
+                </group>
 
               </page>
             </notebook>
           </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
         </form>
       </field>
     </record>
@@ -165,9 +379,14 @@
       <field name="model">psg.contract_type</field>
       <field name="arch" type="xml">
         <tree string="Contract Type">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="charge_type"/>
+            <field name="call_out1"/>
+            <field name="call_out2"/>
+            <field name="labour_1a"/>
+            <field name="labour_1b"/>
+            <field name="labour_2a"/>
+            <field name="labour_2b"/>
         </tree>
       </field>
     </record>
@@ -182,10 +401,15 @@
             <group>
                 <group>
                     <field name="name"/>
-
+                    <field name="charge_type"/>
+                    <field name="call_out1"/>
+                    <field name="call_out2"/>
                 </group>
                 <group>
-
+                    <field name="labour_1a"/>
+                    <field name="labour_1b"/>
+                    <field name="labour_2a"/>
+                    <field name="labour_2b"/>
                 </group>
             </group>
             <group>
@@ -232,9 +456,9 @@
       <field name="model">psg.category_type</field>
       <field name="arch" type="xml">
         <tree string="Category Type">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -247,16 +471,9 @@
         <form string="Category Type">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+                <field name="name"/>
+                <field name="color"/>
+                <field name="active"/>
             </group>
           </sheet>
         </form>
@@ -300,9 +517,9 @@
       <field name="model">psg.category_grade</field>
       <field name="arch" type="xml">
         <tree string="Category Grade">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -315,16 +532,9 @@
         <form string="Category Grade">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+                <field name="name"/>
+                <field name="color"/>
+                <field name="active"/>
             </group>
           </sheet>
         </form>
@@ -369,9 +579,9 @@
       <field name="model">psg.contract_service_frequency</field>
       <field name="arch" type="xml">
         <tree string="contract_service_frequency">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -384,16 +594,9 @@
         <form string="Contract Service Frequency">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
             </group>
           </sheet>
         </form>
@@ -438,9 +641,9 @@
       <field name="model">psg.invoice_code</field>
       <field name="arch" type="xml">
         <tree string="invoice_code">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -453,16 +656,9 @@
         <form string="invoice_code">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+              <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
             </group>
           </sheet>
         </form>
@@ -506,9 +702,9 @@
       <field name="model">psg.paid_by</field>
       <field name="arch" type="xml">
         <tree string="paid_by">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -521,16 +717,9 @@
         <form string="paid_by">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+             <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
             </group>
           </sheet>
         </form>
@@ -574,9 +763,19 @@
       <field name="model">psg.urns</field>
       <field name="arch" type="xml">
         <tree string="urns">
-          <field name="name"/>
-
-
+            <field name="name"/>
+            <field name="response"/>
+            <field name="withdrawn_from"/>
+            <field name="remind"/>
+            <field name="up_to"/>
+            <field name="detect_no"/>
+            <field name="no_level_1"/>
+            <field name="level_1"/>
+            <field name="no_level_2"/>
+            <field name="contract_id"/>
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
         </tree>
       </field>
     </record>
@@ -591,13 +790,26 @@
             <group>
                 <group>
                     <field name="name"/>
-
+                    <field name="response"/>
+                    <field name="withdrawn_from"/>
+                    <field name="contract_id"/>
                 </group>
                 <group>
-
+                    <field name="remind"/>
+                    <field name="up_to"/>
+                    <field name="detect_no"/>
                 </group>
             </group>
             <group>
+                <group>
+                    <field name="no_level_1"/>
+                    <field name="level_1"/>
+
+                </group>
+                <group>
+                    <field name="level_1"/>
+                    <field name="no_level_2"/>
+                </group>
 
             </group>
           </sheet>
@@ -642,10 +854,9 @@
       <field name="model">psg.loss_reason</field>
       <field name="arch" type="xml">
         <tree string="loss_reason">
-          <field name="name"/>
-
-
-        </tree>
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
       </field>
     </record>
 
@@ -657,16 +868,9 @@
         <form string="loss_reason">
           <sheet>
             <group>
-                <group>
-                    <field name="name"/>
-
-                </group>
-                <group>
-
-                </group>
-            </group>
-            <group>
-
+             <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
             </group>
           </sheet>
         </form>
