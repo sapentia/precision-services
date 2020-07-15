@@ -134,7 +134,7 @@
        <field name="model">psg.technical_sys</field>
         <field name="arch" type="xml">
             <search string="Search Technical Data">
-                <field name="name" string="Board Name" domain="[()]"/>
+                <field name="name" string="Techical Data" domain="[()]"/>
 
                 <group expand="0" string="Group By">
                         <filter string="Contract" name="name" context="{'group_by': 'name'}"/>

@@ -6,6 +6,7 @@ class psg_technical(models.Model):
     _name = 'psg.technical_sys'
     _description = 'System Details'
 
+    name = fields.Char('Technical Reference')
     contract_id = fields.Many2one(
         comodel_name='psg.contract',
         string='Contract',
