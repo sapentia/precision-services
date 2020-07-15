@@ -1,0 +1,912 @@
+<odoo>
+  <data>
+     <record model="ir.ui.view" id="psg_contract_list">
+      <field name="name">psg.contract.tree</field>
+      <field name="model">psg.contract</field>
+      <field name="arch" type="xml">
+        <tree string="Contracts">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="contact"/>
+            <field name="job_title"/>
+            <field name="health_safety"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_contract_form">
+      <field name="name">psg.contract.form</field>
+      <field name="model">psg.contract</field>
+      <field name="arch" type="xml">
+        <form string="Contracts">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                </group>
+                <group>
+                    <field name="contact"/>
+                    <field name="job_title"/>
+                    <field name="health_safety"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+
+
+                </group>
+            </group>
+            <notebook>
+              <page string="System Information">
+                  <group>
+                        <group>
+                            <field name="system_type"/>
+                            <field name="build_standard"/>
+                            <field name="system_description"/>
+                            <field name="primary_signal_type"/>
+                        </group>
+                        <group>
+                            <field name="category_type"/>
+                            <field name="grade"/>
+                            <field name="system_condition"/>
+                            <field name="status"/>
+                            <field name="contract_type"/>
+                            <field name="premesis_type"/>
+                        </group>
+                    </group>
+
+              </page>
+              <page string="Site Details">
+                  <group>
+                        <group>
+                            <field name="site_address"/>
+                            <field name="site_email"/>
+                        </group>
+                        <group>
+                            <field name="site_mobile"/>
+                            <field name="site_phone"/>
+                        </group>
+                    </group>
+              </page>
+              <page string="PMV Service Setup">
+                   <group>
+                        <group>
+                            <field name="appointment"/>
+                            <field name="service_frequecy"/>
+                            <field name="last_service_date"/>
+                            <field name="annual_date"/>
+                        </group>
+                        <group>
+                            <field name="next_service_date"/>
+                            <field name="ann_hours"/>
+                            <field name="int_hours"/>
+                        </group>
+                    </group>
+              </page>
+              <page string="Remote Monitoring">
+                   <group>
+                        <group>
+                            <field name="remote_signal"/>
+                            <field name="cd_digi"/>
+                            <field name="stu"/>
+                            <field name="remote_ip"/>
+                        </group>
+                        <group>
+                            <field name="central"/>
+                            <field name="fire_authority"/>
+                            <field name="police_authority"/>
+                            <field name="verification"/>
+                        </group>
+                    </group>
+              </page>
+               <page string="Finance">
+                   <group>
+                        <group>
+                            <field name="maint_from"/>
+                            <field name="maint_to"/>
+                            <field name="account_number"/>
+                            <field name="call_out_account"/>
+                            <field name="inv_code"/>
+                            <field name="paid_by"/>
+                            <field name="mon_rate"/>
+                            <field name="key_rate"/>
+                            <field name="guard_rate"/>
+                            <field name="call_out_includes"/>
+                        </group>
+                        <group>
+                            <field name="travel_time"/>
+                            <field name="email_invoice"/>
+                            <field name="po_req_callout"/>
+                            <field name="callout_po"/>
+                            <field name="callout_po_expires"/>
+                            <field name="po_req_main"/>
+                            <field name="maint_po"/>
+                            <field name="maint_po_expires"/>
+                            <field name="account_number"/>
+                            <field name="call_out_account"/>
+                        </group>
+                    </group>
+              </page>
+                <page string="URNs">
+                   <group>
+                       <field name="urn_ids"/>
+
+                    </group>
+              </page>
+                <page string="Private Notes}">
+                   <group>
+                       <field name="private_notes"/>
+
+                    </group>
+              </page>
+                <page string="Service Engineer Notes">
+                   <group>
+                       <group>
+                           <field name="engineer_notes"/>
+                       </group>
+                        <group>
+                            <field name="service_reminder_1"/>
+                            <field name="service_reminder_2"/>
+                            <field name="service_reminder_3"/>
+                            <field name="service_reminder_4"/>
+                        </group>
+                        <group>
+                            <field name="service_reminder_date_1"/>
+                            <field name="service_reminder_date_2"/>
+                            <field name="service_reminder_date_3"/>
+                            <field name="service_reminder_date_4"/>
+                        </group>
+                    </group>
+              </page>
+                <page string="Loss Reason">
+                   <group>
+
+                        <group>
+                            <field name="loss_date"/>
+                            <field name="loss_effective_date"/>
+                            <field name="loss_reason"/>
+
+                        </group>
+                        <group>
+                            <field name="details_removed"/>
+                            <field name="lost_serivce_pa"/>
+                            <field name="destroy_docs"/>
+                        </group>
+                    </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="contract_search" model="ir.ui.view">
+       <field name="name">psg.contract.search</field>
+       <field name="model">psg.contract</field>
+        <field name="arch" type="xml">
+            <search string="Search Contracts">
+                <field name="name" string="Board Name" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_contract_views">
+        <field name="name">Contracts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.contract</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="contract_search"/>
+    </record>
+
+     <menuitem name="Contracts" id="psg_contract_root" sequence="2"/>
+
+
+     <menuitem name="Contracts" id="psg_contract" parent="psg_contract_root" action="psg_contract_views" sequence="5"/>
+     <menuitem name="Configuration" id="psg_config" parent="psg_contract_root" sequence="20"/>
+
+  <!-- Technical Data -->
+    
+         <record model="ir.ui.view" id="psg_technical_sys_list">
+      <field name="name">psg.technical_sys.tree</field>
+      <field name="model">psg.technical_sys</field>
+      <field name="arch" type="xml">
+        <tree string="Technical Data">
+            <field name="name"/>
+            <field name="contract_id"/>
+            <field name="partner_id"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_technical_sys_form">
+      <field name="name">psg.technical_sys.form</field>
+      <field name="model">psg.technical_sys</field>
+      <field name="arch" type="xml">
+        <form string="Technical Data">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="contract_id"/>
+
+                </group>
+                <group>
+                    <field name="partner_id"/>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+            <notebook>
+              <page string="General Information">
+                  <group>
+                      <group>
+                          <field name="remote_reset"/>
+                          <field name="reset_by"/>
+                          <field name="reset_method"/>
+                          <field name="remote_reset_unit"/>
+                          <field name="communicator"/>
+                          <field name="ip_communicator"/>
+                          <field name="type_stu"/>
+                          <field name="extent_cover"/>
+                          <field name="cert_description"/>
+                      </group>
+                      <group>
+                          <field name="time_delay"/>
+                          <field name="cut_out"/>
+                          <field name="lead_engineer"/>
+                          <field name="panel"/>
+                          <field name="software_version"/>
+                          <field name="panel_location"/>
+                          <field name="map_ref"/>
+                          <field name="directions"/>
+                      </group>
+                </group>
+
+              </page>
+              <page string="Fire Equipment Summary">
+                  <group>
+                      <group>
+                          <field name="dep_design"/>
+                          <field name="elec_cert"/>
+                          <field name="des_sched_no"/>
+                          <field name="drawings"/>
+                          <field name="other_docs"/>
+                          <field name="op_instruct"/>
+                          <field name="sys_log"/>
+                          <field name="sys_doc"/>
+
+                      </group>
+                      <group>
+                          <field name="confirm_sys_audio"/>
+                          <field name="confirm_sys_visual"/>
+                          <field name="confirm_sys_other"/>
+                          <field name="confirm_wire_audio"/>
+                          <field name="confirm_wire_visual"/>
+                          <field name="confirm_wire_other"/>
+                          <field name="sound_lvl"/>
+                          <field name="sound_location"/>
+                          <field name="further_inspect"/>
+                      </group>
+                </group>
+                    <group>
+                          <field name="sys_new"/>
+                          <field name="sys_add"/>
+                          <field name="sys_alt"/>
+                          <field name="false_12"/>
+                          <field name="false_auto"/>
+                          <field name="comm_sys"/>
+                          <field name="comm_sys_date"/>
+                          <field name="review_by_date"/>
+                          <field name="review_by"/>
+                          <field name="variation"/>
+                      </group>
+                      <group>
+                          <field name="inst1_model"/>
+                          <field name="inst1_sno"/>
+                          <field name="inst2_model"/>
+                          <field name="inst2_sno"/>
+                          <field name="inst3_model"/>
+                          <field name="inst3_sno"/>
+                          <field name="inst4_model"/>
+                          <field name="inst4_sno"/>
+                          <field name="inst5_model"/>
+                          <field name="inst5_sno"/>
+                          <field name="inst6_model"/>
+                          <field name="inst6_sno"/>
+                </group>
+
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="technical_sys_search" model="ir.ui.view">
+       <field name="name">psg.technical_sys.search</field>
+       <field name="model">psg.technical_sys</field>
+        <field name="arch" type="xml">
+            <search string="Search Technical Data">
+                <field name="name" string="Techical Data" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_technical_sys_views">
+        <field name="name">Technical Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.technical_sys</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="technical_sys_search"/>
+    </record>
+
+
+    <menuitem name="Technical Data" id="psg_technical" parent="psg_contract_root" action="psg_technical_sys_views" sequence="10"/>
+
+
+  <!-- Contract Type-->
+
+         <record model="ir.ui.view" id="psg_contract_type_list">
+      <field name="name">psg.contract_type.tree</field>
+      <field name="model">psg.contract_type</field>
+      <field name="arch" type="xml">
+        <tree string="Contract Type">
+            <field name="name"/>
+            <field name="charge_type"/>
+            <field name="call_out1"/>
+            <field name="call_out2"/>
+            <field name="labour_1a"/>
+            <field name="labour_1b"/>
+            <field name="labour_2a"/>
+            <field name="labour_2b"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_contract_type_form">
+      <field name="name">psg.contract_type.form</field>
+      <field name="model">psg.contract_type</field>
+      <field name="arch" type="xml">
+        <form string="Contract Type">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="charge_type"/>
+                    <field name="call_out1"/>
+                    <field name="call_out2"/>
+                </group>
+                <group>
+                    <field name="labour_1a"/>
+                    <field name="labour_1b"/>
+                    <field name="labour_2a"/>
+                    <field name="labour_2b"/>
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="contract_type_search" model="ir.ui.view">
+       <field name="name">psg.contract_type.search</field>
+       <field name="model">psg.contract_type</field>
+        <field name="arch" type="xml">
+            <search string="Search Contract Type">
+                <field name="name" string="Contract Type" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_contract_type_views">
+        <field name="name">Contract Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.contract_type</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="contract_type_search"/>
+    </record>
+
+
+    <menuitem name="Contract Type" id="contract_type" parent="psg_config" action="psg_contract_type_views" sequence="20"/>
+
+  <!-- Category Type-->
+
+         <record model="ir.ui.view" id="psg_category_type_list">
+      <field name="name">psg.category_type.tree</field>
+      <field name="model">psg.category_type</field>
+      <field name="arch" type="xml">
+        <tree string="Category Type">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_category_type_form">
+      <field name="name">psg.category_type.form</field>
+      <field name="model">psg.category_type</field>
+      <field name="arch" type="xml">
+        <form string="Category Type">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="category_type_search" model="ir.ui.view">
+       <field name="name">psg.category_type.search</field>
+       <field name="model">psg.category_type</field>
+        <field name="arch" type="xml">
+            <search string="Search Category Type">
+                <field name="name" string="Category Type" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Category Type" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_category_type_views">
+        <field name="name">Category Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.category_type</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="category_type_search"/>
+    </record>
+
+
+    <menuitem name="Category Type" id="category_type" parent="psg_config" action="psg_category_type_views" sequence="30"/>
+
+
+  <!-- Category Grade-->
+
+    <record model="ir.ui.view" id="psg_category_grade_list">
+      <field name="name">psg.category_grade.tree</field>
+      <field name="model">psg.category_grade</field>
+      <field name="arch" type="xml">
+        <tree string="Category Grade">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_category_grade_form">
+      <field name="name">psg.category_grade.form</field>
+      <field name="model">psg.category_grade</field>
+      <field name="arch" type="xml">
+        <form string="Category Grade">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="category_grade_search" model="ir.ui.view">
+       <field name="name">psg.category_grade.search</field>
+       <field name="model">psg.category_grade</field>
+        <field name="arch" type="xml">
+            <search string="Search Category grade">
+                <field name="name" string="Category Grade" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Category Gradee" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_category_grade_views">
+        <field name="name">Category Grade</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.category_grade</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="category_grade_search"/>
+    </record>
+
+
+    <menuitem name="Category Grade" id="category_grade" parent="psg_config" action="psg_category_grade_views" sequence="40"/>
+
+
+
+     <!-- contract_service_frequency-->
+
+    <record model="ir.ui.view" id="psg_contract_service_frequency_list">
+      <field name="name">psg.contract_service_frequency.tree</field>
+      <field name="model">psg.contract_service_frequency</field>
+      <field name="arch" type="xml">
+        <tree string="contract_service_frequency">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_contract_service_frequency_form">
+      <field name="name">psg.contract_service_frequency.form</field>
+      <field name="model">psg.contract_service_frequency</field>
+      <field name="arch" type="xml">
+        <form string="Contract Service Frequency">
+          <sheet>
+            <group>
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="contract_service_frequency_search" model="ir.ui.view">
+       <field name="name">psg.contract_service_frequency.search</field>
+       <field name="model">psg.contract_service_frequency</field>
+        <field name="arch" type="xml">
+            <search string="Search Contract Service Frequency">
+                <field name="name" string="Contract Service Frequency" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract Service Frequency" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_contract_service_frequency_views">
+        <field name="name">Contract Service Frequency</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.contract_service_frequency</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="contract_service_frequency_search"/>
+    </record>
+
+
+    <menuitem name="Contract Service Frequency" id="contract_service_frequency" parent="psg_config" action="psg_contract_service_frequency_views" sequence="50"/>
+
+
+
+     <!-- invoice_code-->
+
+    <record model="ir.ui.view" id="psg_invoice_code_list">
+      <field name="name">psg.invoice_code.tree</field>
+      <field name="model">psg.invoice_code</field>
+      <field name="arch" type="xml">
+        <tree string="invoice_code">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_invoice_code_form">
+      <field name="name">psg.invoice_code.form</field>
+      <field name="model">psg.invoice_code</field>
+      <field name="arch" type="xml">
+        <form string="invoice_code">
+          <sheet>
+            <group>
+              <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="invoice_code_search" model="ir.ui.view">
+       <field name="name">psg.invoice_code.search</field>
+       <field name="model">psg.invoice_code</field>
+        <field name="arch" type="xml">
+            <search string="Search Invoice Code">
+                <field name="name" string="Invoice Code" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Invoice Code" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_invoice_code_views">
+        <field name="name">Invoice Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.invoice_code</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="invoice_code_search"/>
+    </record>
+
+
+    <menuitem name="Invoice Code" id="invoice_code" parent="psg_config" action="psg_invoice_code_views" sequence="60"/>
+
+
+     <!-- paid_by-->
+
+    <record model="ir.ui.view" id="psg_paid_by_list">
+      <field name="name">psg.paid_by.tree</field>
+      <field name="model">psg.paid_by</field>
+      <field name="arch" type="xml">
+        <tree string="paid_by">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_paid_by_form">
+      <field name="name">psg.paid_by.form</field>
+      <field name="model">psg.paid_by</field>
+      <field name="arch" type="xml">
+        <form string="paid_by">
+          <sheet>
+            <group>
+             <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="paid_by_search" model="ir.ui.view">
+       <field name="name">psg.paid_by.search</field>
+       <field name="model">psg.paid_by</field>
+        <field name="arch" type="xml">
+            <search string="Search paid_by">
+                <field name="name" string="paid_by" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="paid_by" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_paid_by_views">
+        <field name="name">paid_by</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.paid_by</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="paid_by_search"/>
+    </record>
+
+
+    <menuitem name="Paid By" id="paid_by" parent="psg_config" action="psg_paid_by_views" sequence="70"/>
+
+
+     <!-- urns-->
+
+    <record model="ir.ui.view" id="psg_urns_list">
+      <field name="name">psg.urns.tree</field>
+      <field name="model">psg.urns</field>
+      <field name="arch" type="xml">
+        <tree string="urns">
+            <field name="name"/>
+            <field name="response"/>
+            <field name="withdrawn_from"/>
+            <field name="remind"/>
+            <field name="up_to"/>
+            <field name="detect_no"/>
+            <field name="no_level_1"/>
+            <field name="level_1"/>
+            <field name="no_level_2"/>
+            <field name="contract_id"/>
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_urns_form">
+      <field name="name">psg.urns.form</field>
+      <field name="model">psg.urns</field>
+      <field name="arch" type="xml">
+        <form string="urns">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="response"/>
+                    <field name="withdrawn_from"/>
+                    <field name="contract_id"/>
+                </group>
+                <group>
+                    <field name="remind"/>
+                    <field name="up_to"/>
+                    <field name="detect_no"/>
+                </group>
+            </group>
+            <group>
+                <group>
+                    <field name="no_level_1"/>
+                    <field name="level_1"/>
+
+                </group>
+                <group>
+                    <field name="level_1"/>
+                    <field name="no_level_2"/>
+                </group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="urns_search" model="ir.ui.view">
+       <field name="name">psg.urns.search</field>
+       <field name="model">psg.urns</field>
+        <field name="arch" type="xml">
+            <search string="Search urns">
+                <field name="name" string="urns" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="urns" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_urns_views">
+        <field name="name">urns</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.urns</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="urns_search"/>
+    </record>
+
+
+    <menuitem name="URNs" id="urns" parent="psg_config" action="psg_urns_views" sequence="80"/>
+
+
+    <!-- loss_reason-->
+
+    <record model="ir.ui.view" id="psg_loss_reason_list">
+      <field name="name">psg.loss_reason.tree</field>
+      <field name="model">psg.loss_reason</field>
+      <field name="arch" type="xml">
+        <tree string="loss_reason">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_loss_reason_form">
+      <field name="name">psg.loss_reason.form</field>
+      <field name="model">psg.loss_reason</field>
+      <field name="arch" type="xml">
+        <form string="loss_reason">
+          <sheet>
+            <group>
+             <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="loss_reason_search" model="ir.ui.view">
+       <field name="name">psg.loss_reason.search</field>
+       <field name="model">psg.loss_reason</field>
+        <field name="arch" type="xml">
+            <search string="Search loss_reason">
+                <field name="name" string="loss_reason" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="loss_reason" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_loss_reason_views">
+        <field name="name">loss_reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.loss_reason</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="loss_reason_search"/>
+    </record>
+
+
+    <menuitem name="Loss Reasons" id="loss_reason" parent="psg_config" action="psg_loss_reason_views" sequence="90"/>
+
+
+
+  </data>
+</odoo>
