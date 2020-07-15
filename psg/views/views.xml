@@ -857,6 +857,7 @@
             <field name="name"/>
             <field name="color"/>
             <field name="active"/>
+        </tree>
       </field>
     </record>
 
