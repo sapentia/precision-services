@@ -61,7 +61,7 @@
 
      <menuitem name="Contracts" id="psg_contract_root" sequence="2"/>
 
-     <menuitem name="Board Category" id="psg_contract" parent="psg__contract_root" action="psg_contract_views" sequence="100"/>
+     <menuitem name="Contracts" id="psg_contract" parent="psg__contract_root" action="psg_contract_views" sequence="100"/>
 
 
   </data>
