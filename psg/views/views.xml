@@ -264,7 +264,7 @@
     </record>
 
 
-    <record id="contract_type_search" model="ir.ui.view">
+    <record id="category_type_search" model="ir.ui.view">
        <field name="name">psg.category_type.search</field>
        <field name="model">psg.category_type</field>
         <field name="arch" type="xml">
@@ -291,6 +291,143 @@
 
 
     <menuitem name="Category Type" id="category_type" parent="psg_config" action="psg_category_type_views" sequence="30"/>
-    
+
+
+  <!-- Category Grade-->
+
+    <record model="ir.ui.view" id="psg_category_grade_list">
+      <field name="name">psg.category_grade.tree</field>
+      <field name="model">psg.category_grade</field>
+      <field name="arch" type="xml">
+        <tree string="Category Grade">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_category_grade_form">
+      <field name="name">psg.category_grade.form</field>
+      <field name="model">psg.category_grade</field>
+      <field name="arch" type="xml">
+        <form string="Category Grade">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="contract_grade_search" model="ir.ui.view">
+       <field name="name">psg.category_grade.search</field>
+       <field name="model">psg.category_grade</field>
+        <field name="arch" type="xml">
+            <search string="Search Category grade">
+                <field name="name" string="Category Grade" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Category Gradee" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_category_grade_views">
+        <field name="name">Category Grade</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.category_grade</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="category_grade_search"/>
+    </record>
+
+
+    <menuitem name="Category Grade" id="category_grade" parent="psg_config" action="psg_category_grade_views" sequence="40"/>
+
+
+
+     <!-- contract_service_frequency-->
+
+    <record model="ir.ui.view" id="psg_contract_service_frequency_list">
+      <field name="name">psg.contract_service_frequency.tree</field>
+      <field name="model">psg.contract_service_frequency</field>
+      <field name="arch" type="xml">
+        <tree string="contract_service_frequency">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_category_grade_form">
+      <field name="name">psg.category_grade.form</field>
+      <field name="model">psg.category_grade</field>
+      <field name="arch" type="xml">
+        <form string="Category Grade">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="contract_grade_search" model="ir.ui.view">
+       <field name="name">psg.category_grade.search</field>
+       <field name="model">psg.category_grade</field>
+        <field name="arch" type="xml">
+            <search string="Search Category grade">
+                <field name="name" string="Category Grade" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Category Gradee" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_category_grade_views">
+        <field name="name">Category Grade</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.category_grade</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="category_grade_search"/>
+    </record>
+
+
+    <menuitem name="Category Grade" id="category_grade" parent="psg_config" action="psg_category_grade_views" sequence="40"/>
+
   </data>
 </odoo>
