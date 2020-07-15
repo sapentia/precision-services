@@ -542,7 +542,7 @@
     </record>
 
 
-    <record id="contract_grade_search" model="ir.ui.view">
+    <record id="category_grade_search" model="ir.ui.view">
        <field name="name">psg.category_grade.search</field>
        <field name="model">psg.category_grade</field>
         <field name="arch" type="xml">
