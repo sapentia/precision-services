@@ -1,6 +1,6 @@
 <odoo>
   <data>
-     <record model="ir.ui.view" id="s4s_contract_list">
+     <record model="ir.ui.view" id="psg_contract_list">
       <field name="name">psg.contract.tree</field>
       <field name="model">psg.contract</field>
       <field name="arch" type="xml">
@@ -13,7 +13,7 @@
     </record>
 
 
-    <record model="ir.ui.view" id="s4s_contract_form">
+    <record model="ir.ui.view" id="psg_contract_form">
       <field name="name">psg.contract.form</field>
       <field name="model">psg.contract</field>
       <field name="arch" type="xml">
@@ -75,8 +75,90 @@
 
      <menuitem name="Contracts" id="psg_contract_root" sequence="2"/>
 
-     <menuitem name="Contracts" id="psg_contract" parent="psg_contract_root" action="psg_contract_views" sequence="100"/>
+
+     <menuitem name="Contracts" id="psg_contract" parent="psg_contract_root" action="psg_contract_views" sequence="5"/>
+     <menuitem name="Configuration" id="psg_config" parent="psg_contract_root"  sequence="100"/>
+
+  <!-- Technical Data -->
+    
+         <record model="ir.ui.view" id="psg_technical_sys_list">
+      <field name="name">psg.technical_sys.tree</field>
+      <field name="model">psg.technical_sys</field>
+      <field name="arch" type="xml">
+        <tree string="Technical Data">
+          <field name="name"/>
 
 
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_technical_sys_form">
+      <field name="name">psg.technical_sys.form</field>
+      <field name="model">psg.technical_sys</field>
+      <field name="arch" type="xml">
+        <form string="Technical Data">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+            <notebook>
+              <page string="System Information">
+
+              </page>
+              <page string="Service Information">
+
+              </page>
+              <page string="Financial Data">
+
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="technical_sys_search" model="ir.ui.view">
+       <field name="name">psg.technical_sys.search</field>
+       <field name="model">psg.technical_sys</field>
+        <field name="arch" type="xml">
+            <search string="Search Technical Data">
+                <field name="name" string="Board Name" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_technical_sys_views">
+        <field name="name">Technical Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.technical_sys</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="technical_sys_search"/>
+    </record>
+
+
+    <menuitem name="Technical Data" id="psg_technical" parent="psg_contract_root" action="psg_technical_sys_views" sequence="10"/>
+
+
+    
+    
   </data>
 </odoo>
