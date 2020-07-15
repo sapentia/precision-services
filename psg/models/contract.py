@@ -26,8 +26,8 @@ class psg_category_type(models.Model):
     color = fields.Integer('Colour')
 
 class psg_category_grade(models.Model):
-    _name = 'psg.contract_grade'
-    _description = 'Category Type'
+    _name = 'psg.category_grade'
+    _description = 'Category Grade'
 
     name = fields.Char('Category Type')
     active = fields.Boolean('Active')
