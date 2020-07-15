@@ -1,60 +1,68 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="psg.list">
-      <field name="name">psg list</field>
-      <field name="model">psg.psg</field>
+     <record model="ir.ui.view" id="s4s_contract_list">
+      <field name="name">psg.contract.tree</field>
+      <field name="model">psg.contract</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+        <tree string="Contracts">
+
+
         </tree>
       </field>
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="psg.action_window">
-      <field name="name">psg window</field>
-      <field name="res_model">psg.psg</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="psg.action_server">
-      <field name="name">psg server</field>
-      <field name="model_id" ref="model_psg_psg"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <record model="ir.ui.view" id="s4s_contract_form">
+      <field name="name">psg.contract.form</field>
+      <field name="model">psg.contract</field>
+      <field name="arch" type="xml">
+        <form string="Contracts">
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+        </form>
       </field>
     </record>
--->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="psg" id="psg.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="psg.menu_1" parent="psg.menu_root"/>
-    <menuitem name="Menu 2" id="psg.menu_2" parent="psg.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="psg.menu_1_list" parent="psg.menu_1"
-              action="psg.action_window"/>
-    <menuitem name="Server to list" id="psg" parent="psg.menu_2"
-              action="psg.action_server"/>
--->
+
+    <record id="contract_search" model="ir.ui.view">
+       <field name="name">psg.contract.search</field>
+       <field name="model">psg.contract</field>
+        <field name="arch" type="xml">
+            <search string="Search Contracts">
+                <field name="name" string="Board Name" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Contract" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_contract_views">
+        <field name="name">Contracts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.contract</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="contract_search"/>
+    </record>
+
+     <menuitem name="Contracts" id="psg_contract_root" sequence="2"/>
+
+     <menuitem name="Board Category" id="psg_contract" parent="psg__contract_root" action="psg_contract_views" sequence="100"/>
+
+
   </data>
 </odoo>
