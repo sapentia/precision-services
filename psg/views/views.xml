@@ -377,11 +377,11 @@
     </record>
 
 
-    <record model="ir.ui.view" id="psg_category_grade_form">
-      <field name="name">psg.category_grade.form</field>
-      <field name="model">psg.category_grade</field>
+    <record model="ir.ui.view" id="psg_contract_service_frequency_form">
+      <field name="name">psg.contract_service_frequency.form</field>
+      <field name="model">psg.contract_service_frequency</field>
       <field name="arch" type="xml">
-        <form string="Category Grade">
+        <form string="Contract Service Frequency">
           <sheet>
             <group>
                 <group>
@@ -401,15 +401,15 @@
     </record>
 
 
-    <record id="contract_grade_search" model="ir.ui.view">
-       <field name="name">psg.category_grade.search</field>
-       <field name="model">psg.category_grade</field>
+    <record id="contract_service_frequency_search" model="ir.ui.view">
+       <field name="name">psg.contract_service_frequency.search</field>
+       <field name="model">psg.contract_service_frequency</field>
         <field name="arch" type="xml">
-            <search string="Search Category grade">
-                <field name="name" string="Category Grade" domain="[()]"/>
+            <search string="Search Contract Service Frequency">
+                <field name="name" string="Contract Service Frequency" domain="[()]"/>
 
                 <group expand="0" string="Group By">
-                        <filter string="Category Gradee" name="name" context="{'group_by': 'name'}"/>
+                        <filter string="Contract Service Frequency" name="name" context="{'group_by': 'name'}"/>
 
                 </group>
 
@@ -418,16 +418,291 @@
     </record>
 
      <!-- actions opening views on models exepnes&ndash;&gt;-->
-    <record model="ir.actions.act_window" id="psg_category_grade_views">
-        <field name="name">Category Grade</field>
+    <record model="ir.actions.act_window" id="psg_contract_service_frequency_views">
+        <field name="name">Contract Service Frequency</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">psg.category_grade</field>
+        <field name="res_model">psg.contract_service_frequency</field>
         <field name="view_mode">tree,form,kanban</field>
-        <field name="search_view_id" ref="category_grade_search"/>
+        <field name="search_view_id" ref="contract_service_frequency_search"/>
     </record>
 
 
-    <menuitem name="Category Grade" id="category_grade" parent="psg_config" action="psg_category_grade_views" sequence="40"/>
+    <menuitem name="Contract Service Frequency" id="contract_service_frequency" parent="psg_config" action="psg_contract_service_frequency_views" sequence="50"/>
+
+
+
+     <!-- invoice_code-->
+
+    <record model="ir.ui.view" id="psg_invoice_code_list">
+      <field name="name">psg.invoice_code.tree</field>
+      <field name="model">psg.invoice_code</field>
+      <field name="arch" type="xml">
+        <tree string="invoice_code">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_invoice_code_form">
+      <field name="name">psg.invoice_code.form</field>
+      <field name="model">psg.invoice_code</field>
+      <field name="arch" type="xml">
+        <form string="invoice_code">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="invoice_code_search" model="ir.ui.view">
+       <field name="name">psg.invoice_code.search</field>
+       <field name="model">psg.invoice_code</field>
+        <field name="arch" type="xml">
+            <search string="Search Invoice Code">
+                <field name="name" string="Invoice Code" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Invoice Code" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_invoice_code_views">
+        <field name="name">Invoice Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.invoice_code</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="invoice_code_search"/>
+    </record>
+
+
+    <menuitem name="Invoice Code" id="invoice_code" parent="psg_config" action="psg_invoice_code_views" sequence="60"/>
+
+
+     <!-- paid_by-->
+
+    <record model="ir.ui.view" id="psg_paid_by_list">
+      <field name="name">psg.paid_by.tree</field>
+      <field name="model">psg.paid_by</field>
+      <field name="arch" type="xml">
+        <tree string="paid_by">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_paid_by_form">
+      <field name="name">psg.paid_by.form</field>
+      <field name="model">psg.paid_by</field>
+      <field name="arch" type="xml">
+        <form string="paid_by">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="paid_by_search" model="ir.ui.view">
+       <field name="name">psg.paid_by.search</field>
+       <field name="model">psg.paid_by</field>
+        <field name="arch" type="xml">
+            <search string="Search paid_by">
+                <field name="name" string="paid_by" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="paid_by" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_paid_by_views">
+        <field name="name">paid_by</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.paid_by</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="paid_by_search"/>
+    </record>
+
+
+    <menuitem name="Paid By" id="paid_by" parent="psg_config" action="psg_paid_by_views" sequence="70"/>
+
+
+     <!-- urns-->
+
+    <record model="ir.ui.view" id="psg_urns_list">
+      <field name="name">psg.urns.tree</field>
+      <field name="model">psg.urns</field>
+      <field name="arch" type="xml">
+        <tree string="urns">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_urns_form">
+      <field name="name">psg.urns.form</field>
+      <field name="model">psg.urns</field>
+      <field name="arch" type="xml">
+        <form string="urns">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="urns_search" model="ir.ui.view">
+       <field name="name">psg.urns.search</field>
+       <field name="model">psg.urns</field>
+        <field name="arch" type="xml">
+            <search string="Search urns">
+                <field name="name" string="urns" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="urns" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_urns_views">
+        <field name="name">urns</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.urns</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="urns_search"/>
+    </record>
+
+
+    <menuitem name="URNs" id="urns" parent="psg_config" action="psg_urns_views" sequence="80"/>
+
+
+    <!-- loss_reason-->
+
+    <record model="ir.ui.view" id="psg_loss_reason_list">
+      <field name="name">psg.loss_reason.tree</field>
+      <field name="model">psg.loss_reason</field>
+      <field name="arch" type="xml">
+        <tree string="loss_reason">
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_loss_reason_form">
+      <field name="name">psg.loss_reason.form</field>
+      <field name="model">psg.loss_reason</field>
+      <field name="arch" type="xml">
+        <form string="loss_reason">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+
+                </group>
+                <group>
+
+                </group>
+            </group>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="loss_reason_search" model="ir.ui.view">
+       <field name="name">psg.loss_reason.search</field>
+       <field name="model">psg.loss_reason</field>
+        <field name="arch" type="xml">
+            <search string="Search loss_reason">
+                <field name="name" string="loss_reason" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="loss_reason" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_loss_reason_views">
+        <field name="name">loss_reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.loss_reason</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="loss_reason_search"/>
+    </record>
+
+
+    <menuitem name="Loss Reasons" id="loss_reason" parent="psg_config" action="psg_loss_reason_views" sequence="90"/>
+
+
 
   </data>
 </odoo>
