@@ -1134,6 +1134,66 @@
     <menuitem name="Police Service" id="police_service" parent="psg_config" action="psg_police_service_views" sequence="120"/>
 
 
+  <!-- Build Standard-->
+
+         <record model="ir.ui.view" id="psg_build_standard_list">
+      <field name="name">psg.build_standard.tree</field>
+      <field name="model">psg.build_standard</field>
+      <field name="arch" type="xml">
+        <tree string="Build Standard">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_build_standard_form">
+      <field name="name">psg.build_standard.form</field>
+      <field name="model">psg.build_standard</field>
+      <field name="arch" type="xml">
+        <form string="Build Standard">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="build_standard_search" model="ir.ui.view">
+       <field name="name">psg.build_standard.search</field>
+       <field name="model">psg.build_standard</field>
+        <field name="arch" type="xml">
+            <search string="Search Build Standard">
+                <field name="name" string="Category Type" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Build Standard" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_build_standard_views">
+        <field name="name">Build Standard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.build_standard</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="build_standard_search"/>
+    </record>
+
+
+    <menuitem name="Build Standard" id="build_standard" parent="psg_config" action="psg_build_standard_views" sequence="130"/>
+
 
 
   </data>
