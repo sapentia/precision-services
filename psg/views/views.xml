@@ -1069,7 +1069,7 @@
       <field name="arch" type="xml">
         <tree string="Police Service">
             <field name="name"/>
-            <field name="auth_code"/>
+            <field name="area_code"/>
             <field name="street"/>
             <field name="street2"/>
             <field name="city"/>
@@ -1096,7 +1096,7 @@
                     <field name="postcode"/>
                 </group>
                 <group>
-                    <field name="auth_code"/>
+                    <field name="area_code"/>
                 </group>
             </group>
           </sheet>
