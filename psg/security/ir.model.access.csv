@@ -10,7 +10,7 @@
 "access_psg_loss_reason","psg.loss_reason","psg.model_psg_loss_reason","base.group_user",1,1,1,1
 "access_psg_contract","psg.contract","psg.model_psg_contract","base.group_user",1,1,1,1
 "access_psg_technical_sys","psg.technical_sys","psg.model_psg_technical_sys","base.group_user",1,1,1,1
-"access_psg_applications","psg_applications","psg.model_psg_applications","base.group_user",1,1,1,1
+"access_psg_application","psg_application","psg.model_psg_application","base.group_user",1,1,1,1
 "access_psg_build_standard","psg.build_standard","psg.model_psg_build_standard","base.group_user",1,1,1,1
 "access_psg_systems","psg.systems","psg.model_psg_systems","base.group_user",1,1,1,1
 "access_psg_fire_service","psg.fire_service","psg.model_psg_fire_service","base.group_user",1,1,1,1
