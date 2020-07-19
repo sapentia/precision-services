@@ -908,6 +908,233 @@
     <menuitem name="Loss Reasons" id="loss_reason" parent="psg_config" action="psg_loss_reason_views" sequence="90"/>
 
 
+    <!-- Systems-->
+
+    <record model="ir.ui.view" id="psg_systems_list">
+      <field name="name">psg.systems.tree</field>
+      <field name="model">psg.systems</field>
+      <field name="arch" type="xml">
+        <tree string="systems">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="description"/>
+            <field name="curr_build_std"/>
+            <field name="cert_code"/>
+            <field name="cert_layout"/>
+            <field name="ann_insp"/>
+            <field name="call_insp"/>
+            <field name="install_sheet"/>
+            <field name="group_code"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_systems_form">
+      <field name="name">psg.systems.form</field>
+      <field name="model">psg.systems</field>
+      <field name="arch" type="xml">
+        <form string="systems">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="curr_build_std"/>
+                    <field name="cert_code"/>
+                </group>
+                <group>
+                    <field name="cert_layout"/>
+                    <field name="ann_insp"/>
+                    <field name="call_insp"/>
+                    <field name="install_sheet"/>
+                    <field name="group_code"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="systems_search" model="ir.ui.view">
+       <field name="name">psg.systems.search</field>
+       <field name="model">psg.systems</field>
+        <field name="arch" type="xml">
+            <search string="Search systems">
+                <field name="name" string="systems" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="systems" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_systems_views">
+        <field name="name">systems</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.systems</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="systems_search"/>
+    </record>
+
+
+    <menuitem name="Systems" id="systems" parent="psg_config" action="psg_systems_views" sequence="100"/>
+
+
+    <!-- fire service-->
+
+    <record model="ir.ui.view" id="psg_fire_service_list">
+      <field name="name">psg.fire_service.tree</field>
+      <field name="model">psg.fire_service</field>
+      <field name="arch" type="xml">
+        <tree string="Fire Service">
+            <field name="name"/>
+            <field name="auth_code"/>
+            <field name="street"/>
+            <field name="street2"/>
+            <field name="city"/>
+            <field name="county"/>
+            <field name="postcode"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_fire_service_form">
+      <field name="name">psg.fire_service.form</field>
+      <field name="model">psg.fire_service</field>
+      <field name="arch" type="xml">
+        <form string="Fire Service">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="city"/>
+                    <field name="county"/>
+                    <field name="postcode"/>
+                </group>
+                <group>
+                    <field name="auth_code"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="fire_service_search" model="ir.ui.view">
+       <field name="name">psg.fire_service.search</field>
+       <field name="model">psg.fire_service</field>
+        <field name="arch" type="xml">
+            <search string="Search Fire Service">
+                <field name="name" string="fire_service" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Fire Service" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_fire_service_views">
+        <field name="name">fire_service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.fire_service</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="fire_service_search"/>
+    </record>
+
+
+    <menuitem name="Fire Service" id="fire_service" parent="psg_config" action="psg_fire_service_views" sequence="110"/>
+
+
+
+    <!-- Police service-->
+
+    <record model="ir.ui.view" id="psg_police_service_list">
+      <field name="name">psg.police_service.tree</field>
+      <field name="model">psg.police_service</field>
+      <field name="arch" type="xml">
+        <tree string="Police Service">
+            <field name="name"/>
+            <field name="auth_code"/>
+            <field name="street"/>
+            <field name="street2"/>
+            <field name="city"/>
+            <field name="county"/>
+            <field name="postcode"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_police_service_form">
+      <field name="name">psg.police_service.form</field>
+      <field name="model">psg.police_service</field>
+      <field name="arch" type="xml">
+        <form string="Police Service">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="city"/>
+                    <field name="county"/>
+                    <field name="postcode"/>
+                </group>
+                <group>
+                    <field name="auth_code"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="police_service_search" model="ir.ui.view">
+       <field name="name">psg.police_service.search</field>
+       <field name="model">psg.police_service</field>
+        <field name="arch" type="xml">
+            <search string="Search Police Service">
+                <field name="name" string="police_service" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Police Service" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_police_service_views">
+        <field name="name">police_service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.police_service</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="police_service_search"/>
+    </record>
+
+
+    <menuitem name="Police Service" id="police_service" parent="psg_config" action="psg_police_service_views" sequence="120"/>
+
+
+
 
   </data>
 </odoo>
