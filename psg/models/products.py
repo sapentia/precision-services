@@ -20,5 +20,5 @@ class psg_applications(models.Model):
     _description = 'Application'
 
     name = fields.Char('Application')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     product_id = fields.Char('Product')

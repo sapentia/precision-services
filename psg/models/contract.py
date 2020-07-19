@@ -7,6 +7,7 @@ class psg_contract_type(models.Model):
     _description = 'Contract Type'
 
     name = fields.Char('Type')
+    active = fields.Boolean('Active',default=True)
     charge_type = fields.Char('Charge Type')
     call_out1 = fields.Float('Call Out 1')
     call_out2 = fields.Float('Call Out 2')
@@ -22,7 +23,7 @@ class psg_category_type(models.Model):
     _description = 'Category Type'
 
     name = fields.Char('Category Type')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 class psg_category_grade(models.Model):
@@ -30,7 +31,7 @@ class psg_category_grade(models.Model):
     _description = 'Category Grade'
 
     name = fields.Char('Category Type')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 class psg_service_frequency(models.Model):
@@ -38,7 +39,7 @@ class psg_service_frequency(models.Model):
     _description = 'Service Frequency'
 
     name = fields.Char('Frequency')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 class psg_invoice_code(models.Model):
@@ -46,7 +47,7 @@ class psg_invoice_code(models.Model):
     _description = 'Invoice Code'
 
     name = fields.Char('Invoice Code')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 
@@ -55,7 +56,7 @@ class psg_paid_by(models.Model):
     _description = 'Paid By'
 
     name = fields.Char('Payment Method')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 
@@ -77,7 +78,7 @@ class psg_urns(models.Model):
         comodel_name='psg.contract',
         string='Contract',
         required=False)
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 class psg_loss_reason(models.Model):
@@ -85,7 +86,7 @@ class psg_loss_reason(models.Model):
     _description = 'Loss Reasons'
 
     name = fields.Char('Payment Method')
-    active = fields.Boolean('Active')
+    active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
 class psg_contract(models.Model):
@@ -94,6 +95,7 @@ class psg_contract(models.Model):
     _description = 'Contracts'
 
     name = fields.Char('Contract Number')
+    active = fields.Boolean('Active', default=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         string='Client',
@@ -113,8 +115,8 @@ class psg_contract(models.Model):
         required=False)
 
     build_standard = fields.Many2one(
-        comodel_name='psg.systems',
-        string='System Type',
+        comodel_name='psg.build_type',
+        string='Build Type',
         required=False)
 
     system_description = fields.Char('System Description')
@@ -154,6 +156,10 @@ class psg_contract(models.Model):
         string='Status',
         selection=[('comm', 'Commercial'),
                    ('res', 'Residential'),
+                   ('ind', 'Industrial'),
+                   ('man', 'Manufacturing'),
+                   ('land', 'Landlord Owned'),
+                   ('pub', 'Public Sector'),
                    ('retail', 'Retail'),],
         required=False, )
 

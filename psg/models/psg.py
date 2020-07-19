@@ -2,6 +2,14 @@
 
 from odoo import models, fields, api
 
+class psg_build_standard(models.Model):
+    _name = 'psg.build_standard'
+    _description = 'Build Standards'
+
+    name = fields.Char('Build Standards')
+    code = fields.Char('Code')
+    description = fields.Text('Friendly Name')
+
 
 class psg_systems(models.Model):
     _name = 'psg.systems'
@@ -10,9 +18,12 @@ class psg_systems(models.Model):
     name = fields.Char('System Type')
     code = fields.Char('Code')
     description = fields.Text('Friendly Name')
-    curr_build_std = fields.Char('Current Build Standard')
+    curr_build_std  = fields.Many2one(
+        comodel_name='psg.build_standard',
+        string='Current Build Standard',
+        required=False)
     cert_code = fields.Char('Certification Code')
-    cert_layout = fields.Char('Certification Code')
+    cert_layout = fields.Char('Certification Layout')
     ann_insp = fields.Char('Annual Inspection')
     call_insp = fields.Char('Call Out Inspection')
     install_sheet = fields.Char('Installation')

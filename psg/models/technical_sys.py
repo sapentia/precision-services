@@ -8,6 +8,7 @@ class psg_technical(models.Model):
     _description = 'System Details'
 
     name = fields.Char('Technical Reference')
+    active = fields.Boolean('Active', default=True)
     contract_id = fields.Many2one(
         comodel_name='psg.contract',
         string='Contract',
@@ -51,8 +52,8 @@ class psg_technical(models.Model):
     cut_out = fields.Char('Cut Out')
 
     lead_engineer = fields.Many2one(
-        comodel_name='res.user',
-        string='STU Type',
+        comodel_name='res.users',
+        string='Lead Engineer',
         required=False)
 
     panel = fields.Many2one(
@@ -143,7 +144,7 @@ class psg_technical(models.Model):
     comm_sys_date = fields.Char('Instrument 5 (if any - Serial No')
     review_by_date = fields.Date('Review Date')
     review_by = fields.Many2one(
-        comodel_name='res.user',
+        comodel_name='res.users',
         string='Reviewed By',
         required=False)
     variation = fields.Text('Variations from recommendations')
