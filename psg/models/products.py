@@ -24,3 +24,21 @@ class psg_applications(models.Model):
     name = fields.Char('Application')
     active = fields.Boolean('Active', default=True)
     product_id = fields.Char('Product')
+
+
+class psg_(models.Model):
+    _inherit = 'res.partner'
+
+
+    contract_ids = fields.One2many(
+        comodel_name='psg.contract',
+        inverse_name='partner_id',
+        string='Sites',
+        required=False)
+
+    technical_ids = fields.One2many(
+        comodel_name='psg.technical_sys',
+        inverse_name='partner_id',
+        string='Technical Systems Data',
+        required=False)
+

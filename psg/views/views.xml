@@ -358,7 +358,7 @@
     </record>
 
 
-    <menuitem name="Technical Data" id="psg_technical" parent="psg_contract_root" action="psg_technical_sys_views" sequence="10"/>
+    <menuitem name="Technical Data" id="psg_technical" parent="psg_contract_root" action="psg_technical_sys_views" sequence="12"/>
 
 
   <!-- Contract Type-->
