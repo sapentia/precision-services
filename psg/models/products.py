@@ -11,6 +11,8 @@ class psg_products(models.Model):
     applies_to_ids = fields.Char('Applies to')
     install = fields.Float('Installation Faction')
     amps = fields.Float('Amp Rating')
+    manufacturer  = fields.Char('Manufacturer')
+    model_no = fields.Char('Model Number')
 
 
 

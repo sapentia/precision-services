@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from datetime import datetime, timedelta
 
 class psg_contract_type(models.Model):
     _name = 'psg.contract_type'
@@ -39,6 +40,7 @@ class psg_service_frequency(models.Model):
     _description = 'Service Frequency'
 
     name = fields.Char('Frequency')
+    interval_days = fields.Float('Days between Visits')
     active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
@@ -47,6 +49,14 @@ class psg_invoice_code(models.Model):
     _description = 'Invoice Code'
 
     name = fields.Char('Invoice Code')
+    active = fields.Boolean('Active', default=True)
+    color = fields.Integer('Colour')
+
+class psg_health_safety(models.Model):
+    _name = 'psg.health_safety'
+    _description = 'Health & Safety'
+
+    name = fields.Char('Name')
     active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
@@ -81,6 +91,89 @@ class psg_urns(models.Model):
     active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
+
+class psg_remote(models.Model):
+    _name = 'psg.remote'
+    _description = 'Remote Monitoring'
+
+    name = fields.Char('Remote Monitoring Ref')
+    remote_signal = fields.Selection(
+        string='Remote Signal',
+        selection=[('y', 'Yes'),
+                   ('n', 'No'), ],
+        required=False, )
+
+    cd_digi = fields.Char('CS Digi No')
+    stu = fields.Char('STU No')
+    remote_ip = fields.Char('Remote IP')
+    central = fields.Char('Central Station', default='EMCS Ltd')
+    fire_authority = fields.Many2one(
+        comodel_name='psg.fire_service',
+        string='Fire Authority',
+        required=False)
+
+    police_authority = fields.Many2one(
+        comodel_name='psg.police_service',
+        string='Police Authority',
+        required=False)
+
+    verification = fields.Selection(
+        string='Verification Method',
+        selection=[('none', 'None'),
+                   ('audio', 'Audio'),
+                   ('video', 'Video'),
+                   ('point', 'Point ID'),
+                   ('seq', 'Sequential'), ],
+        required=False, )
+    contract_id  = fields.Many2one(
+        comodel_name='psg.contract',
+        string='Site',
+        required=False)
+    active = fields.Boolean('Active', default=True)
+    color = fields.Integer('Colour')
+
+
+class psg_pmv(models.Model):
+    _name = 'psg.pmv'
+    _description = 'PMVs'
+
+    name = fields.Char('PMV Ref')
+    appointment = fields.Selection(
+        string='Appointment Required',
+        selection=[('y', 'Yes'),
+                   ('n', 'No'), ],
+        required=False, )
+
+    service_frequency = fields.Many2one(
+        comodel_name='psg.contract_service_frequency',
+        string='Service Frequency',
+        required=False)
+
+    # @api.model
+    # @api.depends('last_service_date','service_frequency')
+    # def _get_next_service(self):
+    #     if self.last_service_date:
+    #         for record in self:
+    #             days = record.service_frequency.interval_days or 0
+    #             if days > 0:
+    #                 record.next_service_date = fields.Date.to_string(record.last_servive_date + timedelta(days))
+
+    last_service_date = fields.Date('Last Service Date')
+    first_visit_due = fields.Date('First Visit Due')
+    annual_date = fields.Date('Annual Visit Date')
+    next_service_date = fields.Date('Next Service Date')
+
+    ann_hours = fields.Float('ANN Service Hours')
+    int_hours = fields.Float('INT Service Hours')
+
+    contract_id  = fields.Many2one(
+        comodel_name='psg.contract',
+        string='Site',
+        required=False)
+    active = fields.Boolean('Active', default=True)
+    color = fields.Integer('Colour')
+
+
 class psg_loss_reason(models.Model):
     _name = 'psg.loss_reason'
     _description = 'Loss Reasons'
@@ -89,12 +182,16 @@ class psg_loss_reason(models.Model):
     active = fields.Boolean('Active', default=True)
     color = fields.Integer('Colour')
 
+
+
+
+
 class psg_contract(models.Model):
     _name = 'psg.contract'
     _inherit = ['mail.thread']
-    _description = 'Contracts'
+    _description = 'Sites'
 
-    name = fields.Char('Contract Number')
+    name = fields.Char('Site Number')
     active = fields.Boolean('Active', default=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner',
@@ -104,8 +201,11 @@ class psg_contract(models.Model):
         comodel_name='res.partner',
         string='Contact',
         required=False)
+    account_number = fields.Char('Account Number')
     job_title = fields.Char('Job Title')
-    health_safety = fields.Char('Health & Safety')
+    health_safety  = fields.Many2many(
+        comodel_name='psg.health_safety',
+        string='Health and Safety')
 
     # System Information
 
@@ -115,8 +215,8 @@ class psg_contract(models.Model):
         required=False)
 
     build_standard = fields.Many2one(
-        comodel_name='psg.build_type',
-        string='Build Type',
+        comodel_name='psg.build_standard',
+        string='Build Standard',
         required=False)
 
     system_description = fields.Char('System Description')
@@ -129,12 +229,12 @@ class psg_contract(models.Model):
         required=False)
 
     grade = fields.Many2one(
-        comodel_name='psg.contract_grade',
+        comodel_name='psg.category_grade',
         string='Grade',
         required=False)
 
     system_condition = fields.Selection(
-        string='System_condition',
+        string='System Condition',
         selection=[('green', 'Green'),
                    ('amber', 'Amber'),
                    ('red', 'Red'),],
@@ -148,12 +248,12 @@ class psg_contract(models.Model):
 
     contract_type = fields.Many2one(
         comodel_name='psg.contract_type',
-        string='Contact Type',
+        string='Contract Type',
         required=False)
 
 
     premesis_type = fields.Selection(
-        string='Status',
+        string='Premesis Type',
         selection=[('comm', 'Commercial'),
                    ('res', 'Residential'),
                    ('ind', 'Industrial'),
@@ -177,68 +277,68 @@ class psg_contract(models.Model):
     # Date Information
 
     install_date = fields.Date('Installation Date')
-
+    contract_start = fields.Date('Contract Start Date')
+    specification_date = fields.Date('Specification')
     warranty_date = fields.Date('Warranty Expires')
-    contract_date = fields.Date('Contract Date')
-    next_review_date = fields.Date('Next Review Date')
-    close_date = fields.Date('Closed Date')
+    contract_expire_date = fields.Date('Contract Expires Date')
+    next_review_date = fields.Date('Contract Review Date')
+    close_date = fields.Date('Contract Closed Date')
 
-   # PMV Service Setup
+   # PMV Service Setup ids
 
-    appointment = fields.Selection(
-    string='Appointment Required',
-    selection=[('y', 'Yes'),
-               ('n', 'No'), ],
-    required=False, )
-
-    service_frequecy = fields.Many2one(
-        comodel_name='psg.contract_service_frequency',
-        string='Service Frequency',
+    pmv_ids = fields.One2many(
+        comodel_name='psg.pmv',
+        inverse_name='contract_id',
+        string='PMVs',
         required=False)
 
-    last_service_date = fields.Date('Last Service Date')
-    annual_date = fields.Date('Annual Visit Date')
-    next_service_date = fields.Date('Next Service Date')
+    # System Types
+    fire_ids = fields.One2many(
+        comodel_name='psg.fa_asset',
+        inverse_name='contract_id',
+        string='Fire Assets',
+        required=False)
 
-    ann_hours = fields.Float('ANN Service Hours')
-    int_hours = fields.Float('INT Service Hours')
+    ext_ids = fields.One2many(
+        comodel_name='psg.ext_asset',
+        inverse_name='contract_id',
+        string='Extinguiser Assets',
+        required=False)
 
+
+    eml_ids = fields.One2many(
+        comodel_name='psg.eml_asset',
+        inverse_name='contract_id',
+        string='Emergency Lighting Assets',
+        required=False)
+
+    # Misc
+    rel_quote = fields.Many2one(
+        comodel_name='sale.order',
+        string='Related Quote/Sale Order',
+        required=False)
+
+    rel_contract = fields.Many2one(
+        comodel_name='psg.contract',
+        string='Related Contract',
+        required=False)
 
     # Remote Monitoring
 
-    remote_signal = fields.Selection(
-    string='Remote Signal',
-    selection=[('y', 'Yes'),
-               ('n', 'No'), ],
-    required=False, )
 
-    cd_digi = fields.Char('CS Digi No')
-    stu = fields.Char('STU No')
-    remote_ip = fields.Char('Remote IP')
-    central = fields.Char('Central Station', default='EMCS Ltd')
-    fire_authority = fields.Many2one(
-        comodel_name='psg.fire_service',
-        string='Fire Authority',
+
+    remote_ids = fields.One2many(
+        comodel_name='psg.remote',
+        inverse_name='contract_id',
+        string='Remote Monitoring',
         required=False)
 
-    police_authority = fields.Many2one(
-        comodel_name='psg.police_service',
-        string='Police Authority',
-        required=False)
 
-    verification = fields.Selection(
-    string='Verification Method',
-    selection=[('none', 'None'),
-               ('audio', 'Audio'),
-               ('video', 'Video'),
-               ('point', 'Point ID'),
-               ('seq', 'Sequential'), ],
-    required=False, )
 
     #  Finance Tab
     maint_from = fields.Date('Maintainance From')
     maint_to = fields.Date('Maintainance To')
-    account_number = fields.Char('Account Number')
+    call_account_number = fields.Char('Call Out Account Number')
     call_out_account = fields.Char('Call Out Account')
     inv_code = fields.Many2one(
         comodel_name='psg.invoice_code',
@@ -255,13 +355,17 @@ class psg_contract(models.Model):
     guard_rate = fields.Float('Guard Charge')
     call_out_includes = fields.Float('Call Out Includes')
     travel_time = fields.Float('Travel Time (hrs)')
-    email_invoice = fields.Boolean('Email Invoice?')
+    email_invoice = fields.Selection(string='Verification Method',
+                        selection=[('email', 'Email'),
+                                   ('post', 'Post Invoice'),
+                                   ('print', 'Print Invoice'), ],
+                            required=False, default='email' )
     po_req_callout = fields.Boolean('PO Required - Call Out?')
     callout_po = fields.Char('Call Out PO Number')
-    callout_po_expires = fields.Char('Call Out Expires')
+    callout_po_expires = fields.Date('Call Out Expires')
     po_req_main = fields.Boolean('PO Required - Maintenance?')
     maint_po = fields.Char('Maint PO Number')
-    maint_po_expires = fields.Char('Maint Expires')
+    maint_po_expires = fields.Date('Maint Expires')
 
     urn_ids  = fields.One2many(
         comodel_name='psg.urns',
@@ -269,19 +373,21 @@ class psg_contract(models.Model):
         string='URNs',
         required=False)
 
-    private_notes = fields.Text('Private Notes')
-    notes = fields.Text('Notes')
+    private_notes = fields.Text('Private Notes',track_visibility='onchange')
+    notes = fields.Text('Notes',track_visibility='onchange')
 
-    engineer_notes = fields.Text('Engineer Notes')
+    engineer_notes = fields.Text('Engineer Notes',track_visibility='onchange')
+    copy_notes_single = fields.Boolean('Copy Single Site')
+    copy_notes_multi = fields.Boolean('Copy Multiple Sites')
     service_reminder_1 = fields.Char('Service Reminder 1')
     service_reminder_2 = fields.Char('Service Reminder 2')
     service_reminder_3 = fields.Char('Service Reminder 3')
     service_reminder_4 = fields.Char('Service Reminder 4')
 
-    service_reminder_date_1 = fields.Date('Service Reminder Date 1')
-    service_reminder_date_2 = fields.Date('Service Reminder Date 2')
-    service_reminder_date_3 = fields.Date('Service Reminder Date 3')
-    service_reminder_date_4 = fields.Date('Service Reminder Date4')
+    service_reminder_date_1 = fields.Date('Service Date 1')
+    service_reminder_date_2 = fields.Date('Service Date 2')
+    service_reminder_date_3 = fields.Date('Service Date 3')
+    service_reminder_date_4 = fields.Date('Service Date 4')
 
    #  Loss Details
 
@@ -289,8 +395,8 @@ class psg_contract(models.Model):
     loss_effective_date = fields.Date('Loss Effective Date')
     loss_reason = fields.Many2one(
         comodel_name='psg.loss_reason',
-        string='Loss Reason',
-        required=False)
+        string='Reason for Loss',
+        required=False, track_visibility='onchange')
     details_removed = fields.Date('Details Removed')
     lost_serivce_pa = fields.Char('Lost Service PA')
     destroy_docs = fields.Selection(

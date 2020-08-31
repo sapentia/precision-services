@@ -29,15 +29,11 @@
                 <group>
                     <field name="contact"/>
                     <field name="job_title"/>
-                    <field name="health_safety"/>
+                    <field name="health_safety" widget="many2many_tags"/>
+                    <field name="premesis_type"/>
                 </group>
-                <group>
-                    <field name="notes"/>
-
-
-                </group>
-            </group>
-            <notebook>
+              </group>
+                          <notebook>
               <page string="System Information">
                   <group>
                         <group>
@@ -71,33 +67,13 @@
               </page>
               <page string="PMV Service Setup">
                    <group>
-                        <group>
-                            <field name="appointment"/>
-                            <field name="service_frequecy"/>
-                            <field name="last_service_date"/>
-                            <field name="annual_date"/>
-                        </group>
-                        <group>
-                            <field name="next_service_date"/>
-                            <field name="ann_hours"/>
-                            <field name="int_hours"/>
-                        </group>
+                     <field name="pmv_ids"/>
+
                     </group>
               </page>
               <page string="Remote Monitoring">
                    <group>
-                        <group>
-                            <field name="remote_signal"/>
-                            <field name="cd_digi"/>
-                            <field name="stu"/>
-                            <field name="remote_ip"/>
-                        </group>
-                        <group>
-                            <field name="central"/>
-                            <field name="fire_authority"/>
-                            <field name="police_authority"/>
-                            <field name="verification"/>
-                        </group>
+                       <field name="remote_ids"/>
                     </group>
               </page>
                <page string="Finance">
@@ -141,10 +117,10 @@
                     </group>
               </page>
                 <page string="Service Engineer Notes">
+                    <group>
+                        <field name="engineer_notes"/>
+                    </group>
                    <group>
-                       <group>
-                           <field name="engineer_notes"/>
-                       </group>
                         <group>
                             <field name="service_reminder_1"/>
                             <field name="service_reminder_2"/>
@@ -175,7 +151,20 @@
                         </group>
                     </group>
               </page>
+              <page string="Misc">
+
+                   <group>
+
+                        <group>
+                            <field name="rel_contract"/>
+                        </group>
+                        <group>
+                            <field name="rel_quote"/>
+                        </group>
+                    </group>
+              </page>
             </notebook>
+
           </sheet>
           <div class="oe_chatter">
                 <field name="message_follower_ids" widget="mail_followers"/>
@@ -1194,6 +1183,218 @@
 
     <menuitem name="Build Standard" id="build_standard" parent="psg_config" action="psg_build_standard_views" sequence="130"/>
 
+
+  <!-- Health and Safety-->
+
+         <record model="ir.ui.view" id="psg_health_safety_list">
+      <field name="name">psg.health_safety.tree</field>
+      <field name="model">psg.health_safety</field>
+      <field name="arch" type="xml">
+        <tree string="Health and Safety">
+            <field name="name"/>
+            <field name="color"/>
+            <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_health_safety_form">
+      <field name="name">psg.health_safety.form</field>
+      <field name="model">psg.health_safety</field>
+      <field name="arch" type="xml">
+        <form string="Health and Safety">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="active"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="health_safety_search" model="ir.ui.view">
+       <field name="name">psg.health_safety.search</field>
+       <field name="model">psg.health_safety</field>
+        <field name="arch" type="xml">
+            <search string="Search Health and Safety">
+                <field name="name" string="Health and Safety" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Health and Safety" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_health_safety_views">
+        <field name="name">Health and Safety</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.health_safety</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="health_safety_search"/>
+    </record>
+
+
+    <menuitem name="Build Standard" id="health_safety" parent="psg_config" action="psg_health_safety_views" sequence="140"/>
+
+
+  <!-- PMVs-->
+
+         <record model="ir.ui.view" id="psg_pmv_list">
+      <field name="name">psg.pmv.tree</field>
+      <field name="model">psg.pmv</field>
+      <field name="arch" type="xml">
+        <tree string="PMV Setups">
+            <field name="name"/>
+            <field name="appointment"/>
+            <field name="service_frequency"/>
+            <field name="first_visit_due"/>
+            <field name="annual_date"/>
+            <field name="last_service_date"/>
+            <field name="next_service_date"/>
+            <field name="ann_hours"/>
+            <field name="int_hours"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_pmv_form">
+      <field name="name">psg.pmv.form</field>
+      <field name="model">psg.pmv</field>
+      <field name="arch" type="xml">
+        <form string="PMV Setups">
+          <sheet>
+            <group>
+               <group>
+                    <field name="appointment"/>
+                    <field name="service_frequency"/>
+                    <field name="first_visit_due"/>
+                    <field name="annual_date"/>
+                </group>
+                <group>
+                    <field name="last_service_date"/>
+                    <field name="next_service_date"/>
+                    <field name="ann_hours"/>
+                    <field name="int_hours"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="pmv_search" model="ir.ui.view">
+       <field name="name">psg.pmv.search</field>
+       <field name="model">psg.pmv</field>
+        <field name="arch" type="xml">
+            <search string="Search PMV">
+                <field name="name" string="PMV Setup" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="PMV" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_pmv_views">
+        <field name="name">PMVs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.pmv</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="pmv_search"/>
+    </record>
+
+
+    <menuitem name="PMV Setups" id="pmv" parent="psg_config" action="psg_pmv_views" sequence="150"/>
+
+
+  <!-- Remote Monitoring-->
+
+      <record model="ir.ui.view" id="psg_remote_list">
+      <field name="name">psg.remote.tree</field>
+      <field name="model">psg.remote</field>
+      <field name="arch" type="xml">
+        <tree string="Remote Monitoring Reference">
+            <field name="name"/>
+            <field name="remote_signal"/>
+            <field name="cd_digi"/>
+            <field name="stu"/>
+            <field name="remote_ip"/>
+            <field name="central"/>
+            <field name="fire_authority"/>
+            <field name="police_authority"/>
+            <field name="verification"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_remote_form">
+      <field name="name">psg.remote.form</field>
+      <field name="model">psg.remote</field>
+      <field name="arch" type="xml">
+        <form string="Remote Monitoring Reference">
+          <sheet>
+            <group>
+               <group>
+                    <field name="remote_signal"/>
+                    <field name="cd_digi"/>
+                    <field name="stu"/>
+                    <field name="remote_ip"/>
+                </group>
+                <group>
+                    <field name="central"/>
+                    <field name="fire_authority"/>
+                    <field name="police_authority"/>
+                    <field name="verification"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="remote_search" model="ir.ui.view">
+       <field name="name">psg.remote.search</field>
+       <field name="model">psg.remote</field>
+        <field name="arch" type="xml">
+            <search string="Search remote">
+                <field name="name" string="Remote Monitoring Reference" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Remote Monitoring Reference" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_remote_views">
+        <field name="name">remotes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.remote</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="remote_search"/>
+    </record>
+
+
+    <menuitem name="remote Setups" id="remote" parent="psg_config" action="psg_remote_views" sequence="160"/>
 
 
   </data>

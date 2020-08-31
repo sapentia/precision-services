@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="action_asset_list"
+            string="Asset List"
+            model="psg.asset_list"
+            report_type="qweb-pdf"
+            file="psg.asset_list_report_asset_list"
+            name="psg.asset_list_report_asset_list"
+            paperformat="base.paperformat_euro"
+        />
+
+
+        <template id="asset_list_report_asset_list_document">
+                <t t-call="web.external_layout_boxed">
+
+                    <!-- Put the XML code for your report here -->
+                    <p>Asset List</p>
+                </t>
+        </template>
+
+        <template id="report_asset_list">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="psg.asset_list_report_asset_list_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

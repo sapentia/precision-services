@@ -1,0 +1,563 @@
+<odoo>
+  <data>
+     <record model="ir.ui.view" id="psg_asset_list_list">
+      <field name="name">psg.asset_list.tree</field>
+      <field name="model">psg.asset_list</field>
+      <field name="arch" type="xml">
+        <tree string="Asset Lists">
+            <field name="name"/>
+            <field name="site"/>
+            <field name="list_type"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_asset_list_form">
+      <field name="name">psg.asset_list.form</field>
+      <field name="model">psg.asset_list</field>
+      <field name="arch" type="xml">
+        <form string="Asset Lists">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="site"/>
+                    <field name="list_type"/>
+                </group>
+                <group>
+                    <field name="panel"/>
+                    <field name="panel_location"/>
+                    <field name="system_category"/>
+                    <field name="date" />
+                </group>
+
+            </group>
+            <notebook>
+              <page string="Emergency Lighting">
+                  <group>
+                       <field name="eml_asset_ids" />
+                  </group>
+
+              </page>
+                <page string="Fire Extinguishers">
+                  <group>
+                       <field name="ext_asset_ids" />
+                  </group>
+
+              </page>
+                <page string="Fire Alarms">
+                  <group>
+                       <field name="fa_asset_ids" />
+                  </group>
+
+              </page>
+                <page string="Pump Check">
+                  <group>
+                       <field name="pump_check_ids" />
+                  </group>
+
+              </page>
+                 <page string="Sprinker Weekly Checks">
+                  <group>
+                       <field name="sprinkler_weekly_ids" />
+                    </group>
+
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="asset_list_search" model="ir.ui.view">
+       <field name="name">psg.asset_list.search</field>
+       <field name="model">psg.asset_list</field>
+        <field name="arch" type="xml">
+            <search string="Search Asset Lists">
+                <field name="name" string="Asset List" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Asset List" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_asset_list_views">
+        <field name="name">Asset Lists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.asset_list</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="asset_list_search"/>
+    </record>
+
+     <menuitem name="Assets" id="psg_asset" parent="psg_contract_root"  sequence="11"/>
+
+     <menuitem name="Asset Lists" id="psg_asset_list" parent="psg_asset" action="psg_asset_list_views" sequence="20"/>
+
+
+
+      <!-- Emergency Lighting Records -->
+
+
+     <record model="ir.ui.view" id="psg_eml_asset_list">
+      <field name="name">psg.eml_asset.tree</field>
+      <field name="model">psg.eml_asset</field>
+      <field name="arch" type="xml">
+        <tree string="Emergency Lighting Records">
+            <field name="seq" widget="handle"/>
+            <field name="name"/>
+            <field name="fitting_location"/>
+            <field name="fitting_type"/>
+            <field name="inspection_comments"/>
+            <field name="duration"/>
+            <field name="neon"/>
+            <field name="charging_light"/>
+            <field name="test_date"/>
+            <field name="list_id"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_eml_asset_form">
+      <field name="name">psg.eml_asset.form</field>
+      <field name="model">psg.eml_asset</field>
+      <field name="arch" type="xml">
+        <form string="Emergency Lighting Records">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="fitting_location"/>
+                    <field name="fitting_type"/>
+                    <field name="inspection_comments"/>
+                </group>
+                <group>
+                    <field name="duration"/>
+                    <field name="neon"/>
+                    <field name="charging_light"/>
+                    <field name="test_date"/>
+                    <field name="list_id"/>
+                </group>
+
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="eml_asset_search" model="ir.ui.view">
+       <field name="name">psg.eml_asset.search</field>
+       <field name="model">psg.eml_asset</field>
+        <field name="arch" type="xml">
+            <search string="Search Asset Lists">
+                <field name="name" string="Emergency Lighting Records" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Emergency Lighting Records" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_eml_asset_views">
+        <field name="name">Emergency Lighting Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.eml_asset</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="eml_asset_search"/>
+    </record>
+
+
+     <menuitem name="Emergency Lighting Records" id="psg_eml_asset" parent="psg_asset" action="psg_eml_asset_views" sequence="30"/>
+
+
+      <!-- Fire Extinguisher Records -->
+
+
+     <record model="ir.ui.view" id="psg_ext_asset_list">
+      <field name="name">psg.ext_asset.tree</field>
+      <field name="model">psg.ext_asset</field>
+      <field name="arch" type="xml">
+        <tree string="Fire Extinguisher Records">
+            <field name="seq" widget="handle"/>
+            <field name="name"/>
+            <field name="fitting_location"/>
+            <field name="fitting_type"/>
+            <field name="inspection_comments"/>
+            <field name="install_date"/>
+            <field name="test_date"/>
+            <field name="list_id"/>
+          </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_ext_asset_form">
+      <field name="name">psg.ext_asset.form</field>
+      <field name="model">psg.ext_asset</field>
+      <field name="arch" type="xml">
+        <form string="Fire Extinguisher Records">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="fitting_location"/>
+                    <field name="fitting_type"/>
+                    <field name="inspection_comments"/>
+                </group>
+                <group>
+                    <field name="install_date"/>
+                    <field name="test_date"/>
+                    <field name="list_id"/>
+                </group>
+
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="ext_asset_search" model="ir.ui.view">
+       <field name="name">psg.ext_asset.search</field>
+       <field name="model">psg.ext_asset</field>
+        <field name="arch" type="xml">
+            <search string="Search Fire Extinguisher Records">
+                <field name="name" string="Emergency Lighting Records" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Fire Extinguisher Records" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_ext_asset_views">
+        <field name="name">Fire Extinguisher Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.ext_asset</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="ext_asset_search"/>
+    </record>
+
+
+     <menuitem name="Fire Extinguisher Records" id="psg_ext_asset" parent="psg_asset" action="psg_ext_asset_views" sequence="40"/>
+
+      <!-- Fire Alarm Records -->
+
+
+     <record model="ir.ui.view" id="psg_fa_asset_list">
+      <field name="name">psg.fa_asset.tree</field>
+      <field name="model">psg.fa_asset</field>
+      <field name="arch" type="xml">
+        <tree string="Fire Alarm Records">
+            <field name="seq" widget="handle"/>
+            <field name="name"/>
+            <field name="loop_no"/>
+            <field name="zone_no"/>
+            <field name="device_no"/>
+            <field name="device_type"/>
+            <field name="location"/>
+            <field name="q1_date"/>
+            <field name="q2_date"/>
+            <field name="q3_date"/>
+            <field name="q4_date"/>
+            <field name="list_id"/>
+          </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_fa_asset_form">
+      <field name="name">psg.fa_asset.form</field>
+      <field name="model">psg.fa_asset</field>
+      <field name="arch" type="xml">
+        <form string="Fire Alarm Records">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="loop_no"/>
+                    <field name="zone_no"/>
+                    <field name="device_no"/>
+                    <field name="device_type"/>
+                    <field name="location"/>
+                </group>
+                <group>
+                    <field name="q1_date"/>
+                    <field name="q2_date"/>
+                    <field name="q3_date"/>
+                    <field name="q4_date"/>
+                    <field name="list_id"/>
+                </group>
+
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="fa_asset_search" model="ir.ui.view">
+       <field name="name">psg.fa_asset.search</field>
+       <field name="model">psg.fa_asset</field>
+        <field name="arch" type="xml">
+            <search string="Search Fire Alarm Records">
+                <field name="name" string="Fire Alarm Records" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Fire Alarm Records" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_fa_asset_views">
+        <field name="name">Fire Alarm Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.fa_asset</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="fa_asset_search"/>
+    </record>
+
+
+     <menuitem name="Fire Alarm Records" id="psg_fa_asset" parent="psg_asset" action="psg_fa_asset_views" sequence="50"/>
+
+
+
+      <!-- Pump Check Records -->
+
+
+     <record model="ir.ui.view" id="psg_pump_check_list">
+      <field name="name">psg.pump_check.tree</field>
+      <field name="model">psg.pump_check</field>
+      <field name="arch" type="xml">
+        <tree string="Pump Check Records">
+            <field name="seq" widget="handle"/>
+            <field name="name"/>
+            <field name="week_date"/>
+            <field name="temp_min"/>
+            <field name="temp_before"/>
+            <field name="temp_after"/>
+            <field name="cut_in_press_jp"/>
+            <field name="lamp_check"/>
+            <field name="cut_in_press_elec"/>
+            <field name="churning_press_elec"/>
+            <field name="churning_current_elec"/>
+            <field name="oil_level_dsl"/>
+            <field name="cut_in_press_dsl"/>
+            <field name="cool_circ_dsl"/>
+            <field name="engine_speed_dsl"/>
+            <field name="churning_press_dsl"/>
+            <field name="engine_oil_press_dsl"/>
+            <field name="engine_oil_temp_dsl"/>
+            <field name="manual_start_dsl"/>
+            <field name="run_time_dsl"/>
+            <field name="total_hrs_dsl"/>
+            <field name="fuel_topped_dsl"/>
+            <field name="return_normal_dsl"/>
+            <field name="alarm_reset"/>
+            <field name="tester"/>
+            <field name="list_id"/>
+          </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_pump_check_form">
+      <field name="name">psg.pump_check.form</field>
+      <field name="model">psg.pump_check</field>
+      <field name="arch" type="xml">
+        <form string="Pump Check Records">
+          <sheet>
+            <group>
+                <group>
+                    <field name="seq" widget="handle"/>
+                    <field name="name"/>
+                    <field name="week_date"/>
+                    <field name="temp_min"/>
+                    <field name="temp_before"/>
+                    <field name="temp_after"/>
+                    <field name="cut_in_press_jp"/>
+                    <field name="lamp_check"/>
+                    <field name="cut_in_press_elec"/>
+                    <field name="churning_press_elec"/>
+                    <field name="churning_current_elec"/>
+                </group>
+                <group>
+                    <field name="oil_level_dsl"/>
+                    <field name="cut_in_press_dsl"/>
+                    <field name="cool_circ_dsl"/>
+                    <field name="engine_speed_dsl"/>
+                    <field name="churning_press_dsl"/>
+                    <field name="engine_oil_press_dsl"/>
+                    <field name="engine_oil_temp_dsl"/>
+                    <field name="manual_start_dsl"/>
+                    <field name="run_time_dsl"/>
+                    <field name="total_hrs_dsl"/>
+                    <field name="fuel_topped_dsl"/>
+                    <field name="return_normal_dsl"/>
+                    <field name="alarm_reset"/>
+                    <field name="tester"/>
+                    <field name="list_id"/>
+                </group>
+
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="pump_check_search" model="ir.ui.view">
+       <field name="name">psg.pump_check.search</field>
+       <field name="model">psg.pump_check</field>
+        <field name="arch" type="xml">
+            <search string="Search Pump Check Records">
+                <field name="name" string="Pump Check Records" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Pump Check Records" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_pump_check_views">
+        <field name="name">Pump Check Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.pump_check</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="pump_check_search"/>
+    </record>
+
+
+     <menuitem name="Pump Check Records" id="psg_pump_check" parent="psg_asset" action="psg_pump_check_views" sequence="60"/>
+
+
+
+      <!-- Weekly Sprinkler Records -->
+
+
+     <record model="ir.ui.view" id="psg_sprinkler_weekly_list">
+      <field name="name">psg.sprinkler_weekly.tree</field>
+      <field name="model">psg.sprinkler_weekly</field>
+      <field name="arch" type="xml">
+        <tree string="Sprinkler Weekly Records">
+            <field name="seq" widget="handle"/>
+            <field name="name"/>
+            <field name="valve_exercised"/>
+            <field name="alarm_sound"/>
+            <field name="alarm_op"/>
+            <field name="comments"/>
+            <field name="list_id"/>
+          </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_sprinkler_weekly_form">
+      <field name="name">psg.sprinkler_weekly.form</field>
+      <field name="model">psg.sprinkler_weekly</field>
+      <field name="arch" type="xml">
+        <form string="Sprinkler Weekly Records">
+          <sheet>
+            <group>
+                <group>
+                    <field name="seq" widget="handle"/>
+                    <field name="name"/>
+                    <field name="valve_exercised"/>
+                    <field name="alarm_sound"/>
+                </group>
+                <group>
+                    <field name="alarm_op"/>
+                    <field name="comments"/>
+                    <field name="signature"/>
+                    <field name="list_id"/>
+                </group>
+
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="sprinkler_weekly_search" model="ir.ui.view">
+       <field name="name">psg.sprinkler_weekly.search</field>
+       <field name="model">psg.sprinkler_weekly</field>
+        <field name="arch" type="xml">
+            <search string="Search Sprinkler Weekly Records">
+                <field name="name" string="Sprinkler Weekly Records" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Sprinkler Weekly Records" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_sprinkler_weekly_views">
+        <field name="name">Sprinkler Weekly Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.sprinkler_weekly</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="sprinkler_weekly_search"/>
+    </record>
+
+
+     <menuitem name="Sprinkler WeeklyRecords" id="psg_sprinkler_weekly" parent="psg_asset" action="psg_sprinkler_weekly_views" sequence="70"/>
+
+
+
+
+
+    </data>
+</odoo>
