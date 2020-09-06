@@ -1,24 +1,227 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
-            </t>
-          </dl>
-        </template>
--->
+
+  <!-- Power Supply Units-->
+        <record model="ir.ui.view" id="psg_psu_list">
+
+      <field name="name">psg.psu.tree</field>
+      <field name="model">psg.psu</field>
+      <field name="arch" type="xml">
+        <tree string="Power Supply Units">
+            <field name="name"/>
+            <field name="psu_spur"/>
+            <field name="psu_ln"/>
+            <field name="psu_le"/>
+            <field name="psu_ne"/>
+            <field name="psu_aux"/>
+            <field name="psu_bat"/>
+            <field name="psu_elec_battery"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_psu_form">
+      <field name="name">psg.psu.form</field>
+      <field name="model">psg.psu</field>
+      <field name="arch" type="xml">
+        <form string="Power Supply Units">
+          <sheet>
+            <group>
+                <field name="name"/>
+                <field name="psu_spur"/>
+                <field name="psu_ln"/>
+                <field name="psu_le"/>
+                <field name="psu_ne"/>
+                <field name="psu_aux"/>
+                <field name="psu_bat"/>
+                <field name="psu_elec_battery"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="psu_search" model="ir.ui.view">
+       <field name="name">psg.psu.search</field>
+       <field name="model">psg.psu</field>
+        <field name="arch" type="xml">
+            <search string="Search Power Supply Units">
+                <field name="name" string="Category Type" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Power Supply Units" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_psu_views">
+        <field name="name">Power Supply Units</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.psu</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="psu_search"/>
+    </record>
+
+
+    <menuitem name="Power Supply Unit records" id="psu" parent="psg_config" action="psg_psu_views" sequence="170"/>
+
+     <!-- control Units-->
+  <record model="ir.ui.view" id="psg_cu_list">
+
+      <field name="name">psg.cu.tree</field>
+      <field name="model">psg.cu</field>
+      <field name="arch" type="xml">
+        <tree string="Control Units">
+            <field name="name"/>
+            <field name="cu_locks"/>
+            <field name="cu_lop"/>
+            <field name="cu_reader"/>
+            <field name="cu_kop"/>
+            <field name="cu_exit"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_cu_form">
+      <field name="name">psg.cu.form</field>
+      <field name="model">psg.cu</field>
+      <field name="arch" type="xml">
+        <form string="Control Units">
+          <sheet>
+            <group>
+            <field name="name"/>
+            <field name="cu_locks"/>
+            <field name="cu_lop"/>
+            <field name="cu_reader"/>
+            <field name="cu_kop"/>
+            <field name="cu_exit"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="cu_search" model="ir.ui.view">
+       <field name="name">psg.cu.search</field>
+       <field name="model">psg.cu</field>
+        <field name="arch" type="xml">
+            <search string="Search Control Units">
+                <field name="name" string="Category Type" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Power Supply Units" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_cu_views">
+        <field name="name">Control Units</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.cu</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="cu_search"/>
+    </record>
+
+
+    <menuitem name="Control Unit records" id="cu" parent="psg_config" action="psg_cu_views" sequence="180"/>
+
+
+
+      <!-- control and psu Units-->
+  <record model="ir.ui.view" id="psg_cu_psu_list">
+
+      <field name="name">psg.cu_psu.tree</field>
+      <field name="model">psg.cu_psu</field>
+      <field name="arch" type="xml">
+        <tree string="Control and Power Units">
+            <field name="name"/>
+            <field name="cpsu_spur"/>
+            <field name="cpsu_three_amp"/>
+            <field name="cpsu_le"/>
+            <field name="cpsu_ne"/>
+            <field name="cpsu_trans"/>
+            <field name="cpsu_trans"/>
+            <field name="cpsu_loop"/>
+            <field name="cpsu_bat_test"/>
+            <field name="cpsu_bat"/>
+            <field name="cpsu_qui"/>
+            <field name="cpsu_elec_battery"/>
+            <field name="cpsu_batt_calc"/>
+            <field name="cpsu_batt_replace"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_cu_psu_form">
+      <field name="name">psg.cu_psu.form</field>
+      <field name="model">psg.cu_psu</field>
+      <field name="arch" type="xml">
+        <form string="Control Units">
+          <sheet>
+            <group>
+            <field name="name"/>
+            <field name="cpsu_spur"/>
+            <field name="cpsu_three_amp"/>
+            <field name="cpsu_le"/>
+            <field name="cpsu_ne"/>
+            <field name="cpsu_trans"/>
+            <field name="cpsu_trans"/>
+            <field name="cpsu_loop"/>
+            <field name="cpsu_bat_test"/>
+            <field name="cpsu_bat"/>
+            <field name="cpsu_qui"/>
+            <field name="cpsu_elec_battery"/>
+            <field name="cpsu_batt_calc"/>
+            <field name="cpsu_batt_replace"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="cu_psu_search" model="ir.ui.view">
+       <field name="name">psg.cu_psu.search</field>
+       <field name="model">psg.cu_psu</field>
+        <field name="arch" type="xml">
+            <search string="Search Control and Power Units">
+                <field name="name" string="Control Power Supply Units" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Control Power Supply Units" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_cu_psu_views">
+        <field name="name">Control Units</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.cu_psu</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="cu_psu_search"/>
+    </record>
+
+
+    <menuitem name="Control and Power Unit records" id="cu_psu" parent="psg_config" action="psg_cu_psu_views" sequence="190"/>
+
+
+
     </data>
 </odoo>
