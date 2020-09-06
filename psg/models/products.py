@@ -42,3 +42,12 @@ class psg_(models.Model):
         string='Technical Systems Data',
         required=False)
 
+
+
+class psg_sales(models.Model):
+    _inherit = 'sales.order'
+
+
+    estimated_hours = fields.Float('Estimated Hours')
+
+    estimated_amps = fields.Float('Estimated Amps')
