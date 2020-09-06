@@ -7,13 +7,13 @@
             string="Asset List"
             model="psg.asset_list"
             report_type="qweb-pdf"
-            file="psg.asset_list_report_asset_list"
-            name="psg.asset_list_report_asset_list"
+            file="psg.asset_list_report"
+            name="psg.asset_list_report"
             paperformat="base.paperformat_euro"
         />
 
 
-        <template id="asset_list_report_asset_list_document">
+        <template id="asset_list_report_asset_document">
                 <t t-call="web.external_layout_boxed">
 
                     <!-- Put the XML code for your report here -->
@@ -24,7 +24,7 @@
         <template id="report_asset_list">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
-                    <t t-call="psg.asset_list_report_asset_list_document" />
+                    <t t-call="psg.asset_list_report_asset_document" />
                 </t>
             </t>
         </template>

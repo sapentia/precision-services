@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','contacts'],
+    'depends': ['base','stock','contacts','sale','industry_fsm'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'views/views.xml',
         'views/assets.xml',
         'views/asset_reports.xml',
+        'views/specification_report.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
