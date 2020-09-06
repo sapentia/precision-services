@@ -21,3 +21,6 @@ access_psg_ext_asset,psg.ext_asset,psg.model_psg_ext_asset,base.group_user,1,1,1
 access_psg_fa_asset,psg.fa_asset,psg.model_psg_fa_asset,base.group_user,1,1,1,1
 access_psg_pump_check,psg.pump_check,psg.model_psg_pump_check,base.group_user,1,1,1,1
 access_psg_sprinkler_weekly,psg.sprinkler_weekly,psg.model_psg_sprinkler_weekly,base.group_user,1,1,1,1
+access_psg_psu,psg.psu,psg.model_psg_psu,base.group_user,1,1,1,1
+access_psg_cu,psg.cu,psg.model_psg_cu,base.group_user,1,1,1,1
+access_psg_cu_psu,psg.cu_psu,psg.model_psg_cu_psu,base.group_user,1,1,1,1

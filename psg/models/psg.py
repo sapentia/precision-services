@@ -61,3 +61,47 @@ class psg_police_service(models.Model):
     county = fields.Char('County')
     postcode = fields.Char('Postcode')
 
+
+class psg_psu(models.Model):
+    _name = 'psg.psu'
+    _description = 'Power Supply Unit Checks'
+
+    name = fields.Char('PSU Number')
+    psu_spur = fields.Boolean('Are all PSUs Connected to Spur')
+    psu_ln = fields.Float('Mains voltage Live to Neutral (roughly 240AC)')
+    psu_le = fields.Float('Mains voltage Live to Earth (roughly 240AC)')
+    psu_ne = fields.Float('Mains voltage Neutral to Earth (roughly 240AC)')
+    psu_aux = fields.Float('Auxillary Output Voltage')
+    psu_bat = fields.Float('Battery charge Voltage (roughly 13vDC)')
+    psu_elec_battery = fields.Boolean('Electronic battery test - is the battery ok')
+
+class psg_cu(models.Model):
+    _name = 'psg.cu'
+    _description = 'Control Unit Checks'
+
+    name = fields.Char('Door Number')
+    cu_locks = fields.Float('Output voltage to lock')
+    cu_lop = fields.Boolean('Lock operates correctly?')
+    cu_reader = fields.Float('Output voltage to reader/keypad')
+    cu_kop = fields.Boolean('Keypad operates correctly?')
+    cu_exit = fields.Boolean('Exit buttons and Break Glass operate correctly')
+
+
+class psg_cu_psu(models.Model):
+    _name = 'psg.cu_psu'
+    _description = 'Power Supply and Control Unit Checks'
+
+    name = fields.Char('Panel Number')
+    cpsu_spur = fields.Boolean('Are all PSUs Connected to Spur')
+    cpsu_three_amp = fields.Boolean('Is the Panel/PSU connected to 3 Amp spur')
+    cpsu_ln = fields.Float('Mains voltage Live to Neutral (roughly 240AC)')
+    cpsu_le = fields.Float('Mains voltage Live to Earth (roughly 240AC)')
+    cpsu_ne = fields.Float('Mains voltage Neutral to Earth (roughly 240AC)')
+    cpsu_trans = fields.Float('Transformer Voltage')
+    cpsu_loop = fields.Float('Zone/Loop output Voltage')
+    cpsu_bat_test = fields.Char('Electronic battery test(Voltage/Ah and "R" if replaced')
+    cpsu_bat = fields.Float('Battery charge Voltage')
+    cpsu_qui = fields.Char('Quiescent current(I1)/Alarm current(I2)')
+    cpsu_elec_battery = fields.Boolean('Electronic battery test - is the battery ok')
+    cpsu_batt_calc = fields.Char('Battries suitable for installation (Record results 1.25x((Standby Time x I1) + 1.75 x (0.5 x I2))')
+    cpsu_batt_replace = fields.Boolean('Replace batteries in wireless devices if required')
