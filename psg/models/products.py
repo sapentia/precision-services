@@ -45,7 +45,7 @@ class psg_(models.Model):
 
 
 class psg_sales(models.Model):
-    _inherit = 'sales.order'
+    _inherit = 'sale.order'
 
 
     estimated_hours = fields.Float('Estimated Hours')
