@@ -9,7 +9,7 @@ class psg_products(models.Model):
     sec_grade = fields.Integer('Security Grade')
     env_class = fields.Char('Environmental Class')
     applies_to_ids = fields.Char('Applies to')
-    install = fields.Float('Installation Faction')
+    install = fields.Float('Installation Hours')
     amps = fields.Float('Amp Rating')
     manufacturer  = fields.Char('Manufacturer')
     model_no = fields.Char('Model Number')
@@ -51,3 +51,14 @@ class psg_sales(models.Model):
     estimated_hours = fields.Float('Estimated Hours')
 
     estimated_amps = fields.Float('Estimated Amps')
+
+    maint_type = fields.Selection(
+        string='Maintainance Worksheet Required',
+        selection=[('none', 'None'),
+                   ('default', 'Default Job Sheet'),
+                   ('eml', 'Emergency Lighting'),
+                   ('access', 'Access Control'),
+                   ('cctv', 'CCTV'),
+                   ('fire', 'Fire Alarm'),
+                   ('int', 'Intruder'),],
+        required=False, default='none')
