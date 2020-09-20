@@ -14,47 +14,47 @@
 
 
         <template id="report_specification_document">
- <t t-call="web.external_layout">
-        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+             <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
 
-            <!-- Put the XML code for your report here -->
-            <div class="page"/>
-              <div class="oe_structure"/>
-              <div class="text-center">
-                  <h1>System Design Proposal</h1>
-              </div>
-              <div class="row mt32 mb32" id="informations">
-                  <div t-if="doc.name" class="col-auto mw-100 mb-2">
-                    <strong>Specification Reference No:</strong>
-                    <p class="m-0" t-field="doc.name"/>
-                </div>
-                <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
-                    <strong>Your Reference:</strong>
-                    <p class="m-0" t-field="doc.client_order_ref"/>
-                </div>
-                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
-                    <strong>Date:</strong>
-                    <p class="m-0" t-field="doc.date_order"/>
-                </div>
-              </div>
-            <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
-                    <p class="m-0" t-field="doc.x_studio_specification_document.title"/>
-                </div>
-              </div>
-            <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
-                    <p class="m-0" t-field="doc.x_studio_specification_document.opening_block"/>
-                </div>
-              </div>
-                    <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
-                    <p class="m-0" t-field="doc.x_studio_specification_document.mid_block"/>
-                </div>
-              </div>
-              <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
-                    <p class="m-0" t-field="doc.x_studio_specification_document.closing_block"/>
-                </div>
-              </div>
+                        <!-- Put the XML code for your report here -->
+                        <div class="page"/>
+                          <div class="oe_structure"/>
+                          <div class="text-center">
+                              <h1>System Design Proposal</h1>
+                          </div>
+                          <div class="row mt32 mb32" id="informations">
+                              <div t-if="doc.name" class="col-auto mw-100 mb-2">
+                                <strong>Specification Reference No:</strong>
+                                <p class="m-0" t-field="doc.name"/>
+                            </div>
+                            <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
+                                <strong>Your Reference:</strong>
+                                <p class="m-0" t-field="doc.client_order_ref"/>
+                            </div>
+                            <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
+                                <strong>Date:</strong>
+                                <p class="m-0" t-field="doc.date_order"/>
+                            </div>
 
-    </t>
+                        <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.title"/>
+                            </div>
+
+                        <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.opening_block"/>
+                            </div>
+
+                                <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.mid_block"/>
+                            </div>
+
+                          <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.closing_block"/>
+                            </div>
+
+
+                </t>
         </template>
 
         <template id="report_specification">
