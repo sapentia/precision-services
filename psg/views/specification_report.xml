@@ -28,6 +28,7 @@
                                 <strong>Specification Reference No:</strong>
                                 <p class="m-0" t-field="doc.name"/>
                             </div>
+
                             <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
                                 <strong>Your Reference:</strong>
                                 <p class="m-0" t-field="doc.client_order_ref"/>
@@ -36,6 +37,7 @@
                                 <strong>Date:</strong>
                                 <p class="m-0" t-field="doc.date_order"/>
                             </div>
+                          </div>
 
                         <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
                                 <p class="m-0" t-field="doc.x_studio_specification_document.title"/>
