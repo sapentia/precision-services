@@ -183,6 +183,21 @@ class psg_loss_reason(models.Model):
     color = fields.Integer('Colour')
 
 
+class psg_site_spec(models.Model):
+    _name = 'psg.site_spec'
+    _description = 'Site Specification Types'
+
+    name = fields.Char('Site Specification')
+    title = fields.Text('Title Block')
+    title_active = fields.Boolean('Title Active', default=True)
+    opening_block = fields.Text('Opening Block')
+    open_active = fields.Boolean('Opening Active', default=True)
+    mid_block = fields.Text('Mid Text Block')
+    mid_active = fields.Boolean('Mid Active', default=True)
+    closing_block = fields.Text('Closing Block')
+    closing_active = fields.Boolean('Closing Active', default=True)
+    active = fields.Boolean('Active', default=True)
+    color = fields.Integer('Colour')
 
 
 
@@ -427,3 +442,4 @@ class psg_contract(models.Model):
         selection=[('y', 'Yes'),
                    ('n', 'No'), ],
         required=False, )
+

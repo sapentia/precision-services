@@ -24,3 +24,4 @@ access_psg_sprinkler_weekly,psg.sprinkler_weekly,psg.model_psg_sprinkler_weekly,
 access_psg_psu,psg.psu,psg.model_psg_psu,base.group_user,1,1,1,1
 access_psg_cu,psg.cu,psg.model_psg_cu,base.group_user,1,1,1,1
 access_psg_cu_psu,psg.cu_psu,psg.model_psg_cu_psu,base.group_user,1,1,1,1
+access_psg_site_spec,psg.site_spec,psg.model_site_spec,base.group_user,1,1,1,1
