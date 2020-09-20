@@ -1431,21 +1431,30 @@
       <field name="arch" type="xml">
         <form string="Site Specification Types">
           <sheet>
-            <group>
+              <group>
                <group>
                     <field name="name"/>
-                    <field name="title"/>
-                    <field name="opening_block" widget="html"/>
-                    <field name="mid_block" widget="html"/>
-                    <field name="closing_block" widget="html"/>
+                </group>
+                  <group>
                     <field name="color"/>
+                      <field name="active"/>
                 </group>
-                <group>
-                    <field name="active"/>
-                    <field name="title_active"/>
-                    <field name="mid_active"/>
-                    <field name="closing_active"/>
-                </group>
+              </group>
+              <group>
+                  <field name="title_active"/>
+                  <field name="title"  widget="html"/>
+            </group>
+              <group>
+                  <field name="open_active"/>
+                  <field name="opening_block" widget="html"/>
+            </group>
+              <group>
+                <field name="mid_active"/>
+                <field name="mid_block" widget="html"/>
+            </group>
+              <group>
+                <field name="closing_active"/>
+                <field name="closing_block" widget="html"/>
             </group>
           </sheet>
         </form>
