@@ -223,6 +223,11 @@ class psg_contract(models.Model):
 
     primary_signal_type = fields.Char('Primary Signal Type')
 
+    technical_sys = fields.Many2one(
+        comodel_name='psg.technical_sys',
+        string='Technical Specification',
+        required=False)
+
     category_type = fields.Many2one(
         comodel_name='psg.category_type',
         string='Category Type',
@@ -291,6 +296,24 @@ class psg_contract(models.Model):
         inverse_name='contract_id',
         string='PMVs',
         required=False)
+
+    appointment = fields.Selection(
+        string='Appointment Required',
+        selection=[('y', 'Yes'),
+                   ('n', 'No'), ],
+        required=False, )
+
+    service_frequency = fields.Many2one(
+        comodel_name='psg.contract_service_frequency',
+        string='Service Frequency',
+        required=False)
+
+    last_service_date = fields.Date('Last Service Date')
+    first_visit_due = fields.Date('First Visit Due')
+    annual_date = fields.Date('Annual Visit Date')
+    next_service_date = fields.Date('Next Service Date')
+    ann_hours = fields.Float('ANN Service Hours')
+    int_hours = fields.Float('INT Service Hours')
 
     # System Types
     fire_ids = fields.One2many(

@@ -25,6 +25,8 @@
                 <group>
                     <field name="name"/>
                     <field name="partner_id"/>
+                    <field name="contract_type"/>
+                    <field name="technical_sys"/>
                 </group>
                 <group>
                     <field name="contact"/>
@@ -47,8 +49,6 @@
                             <field name="grade"/>
                             <field name="system_condition"/>
                             <field name="status"/>
-                            <field name="contract_type"/>
-                            <field name="premesis_type"/>
                         </group>
                     </group>
 
@@ -66,7 +66,21 @@
                     </group>
               </page>
               <page string="PMV Service Setup">
-                   <group>
+                  <group>
+                       <group>
+                            <field name="appointment"/>
+                            <field name="service_frequency"/>
+                            <field name="first_visit_due"/>
+                            <field name="annual_date"/>
+                        </group>
+                        <group>
+                            <field name="last_service_date"/>
+                            <field name="next_service_date"/>
+                            <field name="ann_hours"/>
+                            <field name="int_hours"/>
+                        </group>
+                    </group>
+                   <group invisible="1" >
                      <field name="pmv_ids"/>
 
                     </group>

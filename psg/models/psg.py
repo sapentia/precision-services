@@ -103,5 +103,5 @@ class psg_cu_psu(models.Model):
     cpsu_bat = fields.Float('Battery charge Voltage')
     cpsu_qui = fields.Char('Quiescent current(I1)/Alarm current(I2)')
     cpsu_elec_battery = fields.Boolean('Electronic battery test - is the battery ok')
-    cpsu_batt_calc = fields.Char('Battries suitable for installation (Record results 1.25x((Standby Time x I1) + 1.75 x (0.5 x I2))')
+    cpsu_batt_calc = fields.Char('Batteries suitable for installation (Record results 1.25x((Standby Time x I1) + 1.75 x (0.5 x I2))')
     cpsu_batt_replace = fields.Boolean('Replace batteries in wireless devices if required')
