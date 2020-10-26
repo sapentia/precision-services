@@ -169,7 +169,7 @@
       <field name="name">psg.cu_psu.form</field>
       <field name="model">psg.cu_psu</field>
       <field name="arch" type="xml">
-        <form string="Control Units">
+        <form string="Control and Power Units">
           <sheet>
             <group>
             <field name="name"/>
@@ -211,7 +211,7 @@
 
      <!-- actions opening views on models exepnes&ndash;&gt;-->
     <record model="ir.actions.act_window" id="psg_cu_psu_views">
-        <field name="name">Control Units</field>
+        <field name="name">Control and Power Units</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">psg.cu_psu</field>
         <field name="view_mode">tree,form,kanban</field>

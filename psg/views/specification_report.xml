@@ -14,159 +14,49 @@
 
 
         <template id="report_specification_document">
- <t t-call="web.external_layout">
-        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+             <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
 
-            <!-- Put the XML code for your report here -->
-            <div class="page"/>
-              <div class="oe_structure"/>
-              <div class="text-center">
-                  <h1>System Design Proposal</h1>
-              </div>
-              <div class="row mt32 mb32" id="informations">
-                  <div t-if="doc.name" class="col-auto mw-100 mb-2">
-                    <strong>Specification Reference No:</strong>
-                    <p class="m-0" t-field="doc.name"/>
-                </div>
-                <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
-                    <strong>Your Reference:</strong>
-                    <p class="m-0" t-field="doc.client_order_ref"/>
-                </div>
-                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
-                    <strong>Date:</strong>
-                    <p class="m-0" t-field="doc.date_order"/>
-                </div>
-              </div>
+                        <!-- Put the XML code for your report here -->
+                        <div class="page"/>
+                          <div class="oe_structure"/>
+                          <div class="text-center">
+                              <h1>System Design Proposal</h1>
+                          </div>
+                          <div class="row mt32 mb32" id="informations">
+                              <div t-if="doc.name" class="col-auto mw-100 mb-2">
+                                <strong>Specification Reference No:</strong>
+                                <p class="m-0" t-field="doc.name"/>
+                            </div>
 
-              <p>For an Intruder Alarm to be installed at:-</p>
-                  <strong><p>Address:</p></strong>
-                  <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                            <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
+                                <strong>Your Reference:</strong>
+                                <p class="m-0" t-field="doc.client_order_ref"/>
+                            </div>
+                            <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
+                                <strong>Date:</strong>
+                                <p class="m-0" t-field="doc.date_order"/>
+                            </div>
+                          </div>
 
-             <div id="audible">
-              <strong> <p>Introduction</p></strong>
-              <p>The following specification is for the installation of an audible only Intruder Alarm system. This system will be installed in compliance with PD 6662:2017 (which is the UK implementation of EN 50131) and SSAIB (Security Systems and Alarm Inspection Board) Codes of Practice.</p>
-              <p>Precision Service Group Ltd is on the roll of the SSAIB and has achieved UKAS accreditation in accordance with the rules of the SSAIB, and is authorised to issue to the customer a "Certificate of Status and Competence" upon completion of the installation.</p>
-              <p>For the purposes of this proposal and specification, the position of the devices are as seen from outside the final exit door facing the building.</p>
-              <p><strong>Note:</strong> Because it is not possible to determine the structure of the building or locate any hidden pipe work and cabling at the time of the survey, the exact and final location of system parts and devices may be amended by the installing engineer(s), in agreement with the customer at the time of installation.</p>
-              <strong><p>Grading of Intruder and Hold up Alarm systems</p></strong>
-              <p>In accordance with European Standards, a site survey and risk assessment of your property has been carried out. The risk assessment relates solely to the grading and design of the proposed Intruder Alarm and is based upon information available at the time of the survey. Therefore, the grade for this installation has been specified as Security Grade 2, with notification option E. All equipment fitted will conform to EN 50131 - Grade 2 or higher and, unless otherwise stated, will be Environmental Class 2.</p>
-              <strong><p>Premises type</p></strong>
-              <p>The above premises is constructed from the following design and materials:- (enter description here).</p>
-              <strong><p>System Design</p></strong>
-              <p>This system is designed to give an external, audible and visual warning in the event of an activation. It may also be supplemented by additional internal audible and/or visual warning devices and digital signalling equipment.</p>
-              <strong><p>Payment Terms</p></strong>
-              <p>All goods and materials supplied remain the property of JC Systems Ltd until paid for in full. In accordance with our standard Terms and Conditions orders placed over the value of £200 will require a 50% deposit to be paid, prior to the work commencing. The remaining balance on the account, or orders placed under the value of £200, must be settled upon the completion of the installation. Any variances to these terms will not be accepted unless otherwise agreed by a representative of JC Systems Ltd, in writing, prior to the work commencing.</p>
-            </div>
-            <div id="keyholder">
+                        <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.title"/>
+                            </div>
 
-            </div>
-            <div id="police">
-              <strong> <p>Introduction</p></strong>
-              <p>The following specification is for the installation of a monitored Intruder Alarm system with Police and Keyholder response. This system will be installed in compliance with PD 6662:2017 (which is the UK implementation of EN 50131), BS 8243:2010 and SSAIB (Security Systems and Alarm Inspections Board) Codes of Practice.</p>
-              <p>Precision Service Group Ltd is on the roll of the SSAIB and has achieved UKAS accreditation in accordance with the rules of the SSAIB, and is authorised to issue to the customer a "Certificate of Status and Competence" upon completion of the installation.</p>
-              <p>For the purposes of this proposal and specification, the position of the devices are as seen from outside the final exit door facing the building.</p>
-              <p><strong>Note:</strong> Because it is not possible to determine the structure of the building or locate any hidden pipe work and cabling at the time of the survey, the exact and final location of system parts and devices may be amended by the installing engineer(s), in agreement with the customer at the time of installation.</p>
-              <strong> <p>Grading of Intruder and Hold up Alarm systems</p></strong>
-              <p>In accordance with European Standards, a site survey and risk assessment of your property has been carried out. The risk assessment relates solely to the grading and design of the proposed Intruder Alarm and is based upon information available at the time of the survey. Therefore, the grade for this installation has been specified as Security Grade (enter number), with notification option (enter option). All equipment fitted will conform to EN 50131 - Grade (enter number) or higher and, unless otherwise stated, will be Environmental Class 2.</p>
-              <strong> <p>Premises type</p></strong>
-              <p>The above premises is constructed from the following design and materials:- (enter description here).</p>
-              <strong> <p>System Design</p></strong>
-              <p>This system is designed to give automatic warning to an Alarm Receiving Centre (ARC) at East Midlands Central Station (EMCS) Ltd by digital signalling equipment, and may be supplemented by internal and external visual and/or audible devices. Confirmation of an activation will be provided by Sequential Verification.</p>
-              <p>Explanation of Sequential Verification (Sequential Alarm Confirmation):- Sequential Alarm confirmation means that two independent detectors installed as part of the Intruder Alarm system will need to be activated before the system will signal a confirmed alarm to the ARC. The sequentially confirmed activations must also be within the confirmation time of 30 minutes, as required by BS 8243:2010 Appendix F.1.F. On receiving a sequentially confirmed alarm at the ARC, the Police will be notified. All unconfirmed alarms received by the ARC will be treated as Customer/ Keyholder response only.</p>
-              <p>After the Intruder Alarm system has been set, should one detector activate, an unconfirmed alarm will occur and the confirmation time will start. If a second independent detector does not activate before the confirmation time expires the system will be reinstated. If the detector that created the unconfirmed alarm remains in an alarm state at the time of the system reinstatement, that detector will be isolated/ omitted, and an isolation signal will be transmitted to the ARC. If subsequently a different detector activates again, an unconfirmed alarm will occur and the confirmation time will restart.</p>
-              <strong> <p>Downgrading of Police Response</p></strong>
-              <p>For monitored Intruder Alarm systems linked to an ARC, alarm signals will be passed to the Police following any verification procedure. As part of the ACPO Intruder Alarms policy, repeated false alarms may result in response to further alarms being downgraded. The process for this is as follows:</p>
-              <p>After 3 false alarms receiving Police attendance in a rolling 12 month period, response will be withdrawn and the Police will not attend. Withdrawal of response normally lasts a minimum of 3 months, following which response will only be restored if the cause of the false alarms have been resolved and the system has been activation free. Notifications of changes to response are given in writing by the Police.</p>
-              <p>It is therefore in your interests to be aware of the causes of false alarms and to minimise the risk of their occurrence. Information on how to avoid false alarms will be provided when the system is handed over to you.</p>
-              <p><strong>NOTE:</strong> All PA activations are passed to the Police immediately, subject to any downgrading of response described above. Note also that PA activations are treated separately by the Police from Intruder activations when decisions are made about downgrading.</p>
-            </div>
-            <div  id="takeover-audible">
-              <strong> <p>Introduction</p></strong>
-              <p>The following specification is for the takeover of an audible only Intruder Alarm system. This system will be maintained in compliance with BS 4737 (if installed prior to 2004), PD 6662:2017 (which is the UK implementation of EN 50131) and SSAIB (Security Systems and Alarm Inspections Board) Codes of Practice.</p>
-              <p>Precision Service Group Ltd is on the roll of the SSAIB and has achieved UKAS accreditation in accordance with the rules of the SSAIB, and is authorised to issue to the customer a "Certificate of Status and Competence" upon completion of the installation.</p>
-              <p>For the purposes of this proposal and specification, the position of the devices are as seen from outside the final exit door facing the building.</p>
-              <p><strong>Note:</strong> Because it is not possible to determine the structure of the building or locate any hidden pipe work and cabling at the time of the survey, the exact and final location of system parts and devices may be amended by the installing engineer(s), in agreement with the customer at the time of installation.</p>
-              <strong> <p>Grading of Intruder and Hold up Alarm systems</p></strong>
-              <p>In accordance with European Standards, a site survey and risk assessment of your property has been carried out. The risk assessment relates solely to the grading and design of the proposed Intruder Alarm and is based upon information available at the time of the survey. Therefore, the grade for this installation has been specified as Security Grade 2, with notification option X. All equipment fitted will conform to EN 50131 - Grade 2 or higher and, unless otherwise stated, will be Environmental Class 2</p>
-              <strong> <p>Premises type</p></strong>
-              <p>The above premises is constructed from the following design and materials:- (enter description here).</p>
-              <strong> <p>System Design</p></strong>
-              <p>This system has been designed to give a visual and/or audible warning by internal and external visual and/or audible devices, and may be supplemented by digital signalling equipment.</p>
-            </div>
-            <div  id="timed">
-              <strong> <p>Arming the Intruder Alarm system</p></strong>
-              <p>Once the building is completely vacated, a system User will enter a valid user code into the keypad, initiating a 30 second exit timer. During this period the User must vacate the premises and secure the final exit door. At the expiry of the overall exit timer the Intruder Alarm system will be set and armed.</p>
-              <strong> <p>Disarming the Intruder Alarm system</p></strong>
-              <p>The system User will open the entry door, initiating a 30 second entry timer in which they must enter a valid user code into the keypad. This will disarm the Intruder Alarm system and allow access to the premises.</p>
-            </div>
-            <div  id="bs8243">
-              <strong> <p>Arming the Intruder Alarm system</p></strong>
-              <p>Means of setting the Intruder Alarm system will be by the use of a protective switch (i.e. door contact) fitted to the final exit door. Once the building is completely vacated, a system User will enter a valid user code into the keypad, with the final exit door open, initiating the exit procedure. Once the User has then vacated the premises and the final exit door is closed, the Intruder Alarm system will be set and armed.</p>
-              <strong> <p>Disarming the Intruder Alarm system</p></strong>
-              <p>An electronic lock will be installed on the entry door to prevent Users from entering the supervised premises before the Intruder Alarm system is unset as per BS 8243:2010 Clause 6.4.2. The system User will present a Portable Ancillary Control Equipment (PACE) device to the reader, before entering the premises. This will disarm the Intruder Alarm system and release the electronic lock, allowing access to the premises. If the entry door is forced open before the system is disarmed, an unconfirmed alarm signal will be sent to the ARC. If any additional devices are subsequently activated, before the Intruder Alarm system is unset and within the above mentioned confirmation time window, these will be signalled to the ARC as confirmed alarms and passed through to the Police for response.</p>
-              <p>Introduction</p>
-              <p><strong>IMPORTANT: The electronic lock installed should not be relied upon as the sole means of securing the entry door overnight. Its purpose is only to act as a reminder to the system Users that the Intruder Alarm system has not been unset, in order to prevent false alarms being passed through to the Police.</strong></p>
-            </div>
-            <div  id="finals">
-              <strong> <p>Specification Notes</p></strong>
-              <p>Intruder Alarms can be source of annoyance to the community and the Police, if false alarms occur due to miss-operation. It is therefore essential that all users and keyholders of the system are properly trained in the use of the system and are issued a valid User code. Keyholders for monitored systems will need to live within 20 minutes travelling time of the premises and must be telephone subscribers, so that the Alarm Receiving Centre can contact them in the event of activation.</p>
-              <p>It is the customer's responsibility to advise the Police and the local Environmental Health Officer of the installation of the Intruder Alarm system under the terms of "Control of Noise (Codes of Practise on Noise from Intruder Alarms) Order 1981".</p>
-              <p>When unsetting the Intruder Alarm system, it is important that the Entry route is adhered to and that children and pets are prevented from entering protected areas until the system has completed the unset process.</p>
-              <p>External warning devices are required to have a limitation on the time they are permitted to sound. This is normally 15 minutes maximum, even if the Intruder Alarm equipment fails to function due to, for example, deliberate vandalism. Dependant on the equipment installed, a shorter period may be programmable in the Intruder Alarm control panel. Audible warning devices fitted to monitored systems may be required by the Police to have a ten minute delay, following the activation of the Intruder Alarm. Note, however, that the signalling to the Alarm Receiving Centre always takes place immediately.</p>
-              <p>The details of any false alarms should be recorded by the user, giving the date, time and circuit number to aid any subsequent fault finding.</p>
-              <strong> <p>Mains Supply</p></strong>
-              <p>The customer is responsible for the provision of adequate mains power supplies, to be provided with the appropriate mains safety testing certificates. Please ensure an Unswitched, 3 Amp, Fused Spur is available within 1 metre of the location of the Control Panel and any additional Power Supply Units.</p>
-              <strong> <p>Space Protection</p></strong>
-              <p>Any alterations inside the premises may have an adverse affect on the coverage of movement detectors. Changes to the rooms, furnishings or the addition of shelves and stacking of stock could seriously affect the ability of the detector to sense movement. It should be remembered that detectors incorporating PIR technology, require a line of sight in order to function correctly. It is recommended that any changes to the premises be discussed with the company that maintains the Intruder Alarm to ensure that the system is not accidentally compromised.</p>
-              <p>The coverage of movement detectors should be checked regularly through walk testing to ensure that the specified coverage continues to be maintained. This is especially important in dusty or smoky atmospheres. Instructions on how to carry out walk testing will be provided by the installer during commissioning of the installation, and are given in the control panel operator's handbook.</p>
-              <p>To prevent false alarms, pets must not be left in areas covered by movement detection when the system is either fully or part set.</p>
-              <strong> <p>Concealed Wiring</p></strong>
-              <p>The company's engineers will endeavour to conceal cables where practical and advisable. Any request by the customer for wiring to be concealed or protected in addition to the above, will be charged as extras to the system.</p>
-              <p>THE CUSTOMER IS RESPONSIBLE FOR THE REMOVAL OF ALL STOCK AND OBSTRUCTIONS THAT MIGHT IMPEDE THE COMPANY'S ENGINEERS DURING THE INSTALLATION PERIOD.</p>
-              <strong> <p>Ground Works</p></strong>
-              <p>All or any ground work necessary and essential to the installation of the system specification detailed, unless otherwise stated or requested by the customer in writing, prior to work commencing, is the financial and management responsibility of the customer. Delays and interruptions to the installation work being carried out may carry a surcharge proportional to the additional engineering time on site.</p>
-              <strong> <p>Survey Conditions</p></strong>
-              <p>This specification has been prepared before shop fitting or building alterations have taken place. A charge may be made for any additional work arising from structural alterations found at the time of the installation.</p>
-              <strong> <p>Payment Terms</p></strong>
-              <p>All goods and materials supplied remain the property of JC Systems Ltd until paid for in full. In accordance with our standard Terms and Conditions orders placed over the value of £200 will require a 50% deposit to be paid, prior to the work commencing. The remaining balance on the account, or orders placed under the value of £200, must be settled upon the completion of the installation. Any variances to these terms will not be accepted unless otherwise agreed by a representative of JC Systems Ltd, in writing, prior to the work commencing.</p>
-            </div>
-            <div  id="cctv">
-              <strong> <p>Introduction</p></strong>
-              <p>The following specification is for the installation of a CCTV system. This system will be installed in compliance with the SSAIB (Security Systems and Alarm Inspectorate Board) Codes of Practice which include the requirements of BS EN 50132-7:1996.</p>
-              <p>JC Systems Ltd is on the roll of the SSAIB and has achieved UKAS accreditation in accordance with the rules of the SSAIB, and is authorised to issue to the customer a "Certificate of Status and Competence" upon completion of the installation.</p>
-              <p>For the purposes of this proposal and specification, the position of the devices will be described as being front or rear and left or right as seen by an observer standing outside and facing the front of the premises.</p>
-              <p><string>Note:</string> Because it is not possible to determine the structure of the building or locate any hidden pipe work and cabling at the time of the survey, the exact and final location of system parts and devices may be amended by the installing engineer(s), in agreement with the customer at the time of installation.</p>
-              <strong> <p>Premises type</p></strong>
-              <p>The above premises is constructed from the following design and materials:- (enter description here).</p>
-              <strong> <p>System Purpose</p></strong>
-              <p>The above premises is constructed from the following design and materials:- (enter description here).</p>
-            </div>
-            <div  id="cctv-final">
-              <strong> <p>Concealed Wiring</p></strong>
-              <p>The company's engineers will endeavour to conceal cables where practical and advisable. Any request by the customer for wiring to be concealed or protected in addition to the above, will be charged as extras to the system.</p>
-              <strong> <p>Mains Supply</p></strong>
-              <p>The customer is responsible for the provision of adequate mains power supplies, to be provided with the appropriate mains safety testing certificates. Where boxed Power Supply Units are required, an Unswitched 3Amp Fused Spur must be provided within 1 metre of the location.</p>
-              <strong> <p>Communications</p></strong>
-              <p>Where remote monitoring of the system is required, the customer will arrange for the provision of either an ISDN or ADSL line, with suitable bandwidth for the transmission of the CCTV images.</p>
-              <strong> <p>Ground or Civil Works, and Ducting</p></strong>
-              <p>All or any ground and/or civil works necessary and essential to the installation of the system specification detailed is the financial and management responsibility of the customer, unless otherwise requested by the customer, in writing, prior to the work commencing. Delays and interruptions to the installation work being carried out, due to the ground and/or civil works not being completed on schedule, may carry a surcharge proportional to the additional engineering time on site.</p>
-              <p>Please ensure that any ducting or cable containment lay down as part of the ground and/or civil works is of sufficient size, type and design so as to aid the easy drawing of cables and to allow for future expansion of the system.</p>
-              <p>Please ensure that any column or pole footings are finished to the manufacturers own specifications, and that any columns or poles mounted to walls are securely fastened.</p>
-              <strong> <p>Lighting</p></strong>
-              <p>Camera performance is dependant on the prevailing light available. Unless otherwise listed above, no additional lighting has been specified. Should lighting arrangements prove to be less than satisfactory for the performance of the system; additional lighting can be provided but will be quoted for as additional work.</p>
-              <p>Where public street lighting forms part of the lighting provision, the customer should determine whether any arrangements are in place, or are being considered, to introduce energy saving measures (i.e. timers which could switch off the lights during certain hours, reduced numbers of lights switched on) which would have significant detrimental effect on the quality of the images recorded and/or transmitted.</p>
-              <strong> <p>Data Protection Act and Code of Practice For CCTV Monitoring</p></strong>
-              <p>Attention is drawn to the Data Protection Act 1998 and the Information Commissioner's Office CCTV Code of Practice 2008. By law, the customer may be responsible for registering the system with the Information Commissioner's Office.</p>
-              <p>Information can be obtained from the Information Commissioner's Office:- www.ico.gov.uk</p>
-              <p>Attention is also drawn to the Data Protection Act 1998 and the requirement to provide adequate signs to inform members of the public that they may be recorded by CCTV.</p>
-              <strong> <p>British Standard Code Of Practice:- BS 7958</p></strong>
-              <p>Attention is drawn to the above code of practice for the management and operation of CCTV which is applicable to CCTV used in public spaces and also provides good practice for all other CCTV systems (Note: this document may be obtained from the British Standards Institute or the National Security Inspectorate).</p>
+                        <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.opening_block"/>
+                            </div>
 
-              <strong> <p>Payment Terms</p></strong>
-              <p>All goods and materials supplied remain the property of JC Systems Ltd until paid for in full. In accordance with our standard Terms and Conditions orders placed over the value of £200 will require a 50% deposit to be paid, prior to the work commencing. The remaining balance on the account, or orders placed under the value of £200, must be settled upon the completion of the installation. Any variances to these terms will not be accepted unless otherwise agreed by a representative of JC Systems Ltd, in writing, prior to the work commencing.</p>
+                                <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.mid_block"/>
+                            </div>
 
-            </div>
-    </t>
+                          <div t-if="doc.x_studio_specification_document" class="col-auto mw-100 mb-2">
+                                <p class="m-0" t-field="doc.x_studio_specification_document.closing_block"/>
+                            </div>
+
+
+                </t>
         </template>
 
         <template id="report_specification">

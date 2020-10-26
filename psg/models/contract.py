@@ -183,6 +183,21 @@ class psg_loss_reason(models.Model):
     color = fields.Integer('Colour')
 
 
+class psg_site_spec(models.Model):
+    _name = 'psg.site_spec'
+    _description = 'Site Specification Types'
+
+    name = fields.Char('Site Specification')
+    title = fields.Text('Title Block')
+    title_active = fields.Boolean('Title Active', default=True)
+    opening_block = fields.Text('Opening Block')
+    open_active = fields.Boolean('Opening Active', default=True)
+    mid_block = fields.Text('Mid Text Block')
+    mid_active = fields.Boolean('Mid Active', default=True)
+    closing_block = fields.Text('Closing Block')
+    closing_active = fields.Boolean('Closing Active', default=True)
+    active = fields.Boolean('Active', default=True)
+    color = fields.Integer('Colour')
 
 
 
@@ -222,6 +237,11 @@ class psg_contract(models.Model):
     system_description = fields.Char('System Description')
 
     primary_signal_type = fields.Char('Primary Signal Type')
+
+    technical_sys = fields.Many2one(
+        comodel_name='psg.technical_sys',
+        string='Technical Specification',
+        required=False)
 
     category_type = fields.Many2one(
         comodel_name='psg.category_type',
@@ -291,6 +311,24 @@ class psg_contract(models.Model):
         inverse_name='contract_id',
         string='PMVs',
         required=False)
+
+    appointment = fields.Selection(
+        string='Appointment Required',
+        selection=[('y', 'Yes'),
+                   ('n', 'No'), ],
+        required=False, )
+
+    service_frequency = fields.Many2one(
+        comodel_name='psg.contract_service_frequency',
+        string='Service Frequency',
+        required=False)
+
+    last_service_date = fields.Date('Last Service Date')
+    first_visit_due = fields.Date('First Visit Due')
+    annual_date = fields.Date('Annual Visit Date')
+    next_service_date = fields.Date('Next Service Date')
+    ann_hours = fields.Float('ANN Service Hours')
+    int_hours = fields.Float('INT Service Hours')
 
     # System Types
     fire_ids = fields.One2many(
@@ -404,3 +442,4 @@ class psg_contract(models.Model):
         selection=[('y', 'Yes'),
                    ('n', 'No'), ],
         required=False, )
+

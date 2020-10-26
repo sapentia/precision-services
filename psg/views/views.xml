@@ -25,6 +25,8 @@
                 <group>
                     <field name="name"/>
                     <field name="partner_id"/>
+                    <field name="contract_type"/>
+                    <field name="technical_sys"/>
                 </group>
                 <group>
                     <field name="contact"/>
@@ -47,8 +49,6 @@
                             <field name="grade"/>
                             <field name="system_condition"/>
                             <field name="status"/>
-                            <field name="contract_type"/>
-                            <field name="premesis_type"/>
                         </group>
                     </group>
 
@@ -66,7 +66,21 @@
                     </group>
               </page>
               <page string="PMV Service Setup">
-                   <group>
+                  <group>
+                       <group>
+                            <field name="appointment"/>
+                            <field name="service_frequency"/>
+                            <field name="first_visit_due"/>
+                            <field name="annual_date"/>
+                        </group>
+                        <group>
+                            <field name="last_service_date"/>
+                            <field name="next_service_date"/>
+                            <field name="ann_hours"/>
+                            <field name="int_hours"/>
+                        </group>
+                    </group>
+                   <group invisible="1" >
                      <field name="pmv_ids"/>
 
                     </group>
@@ -1395,6 +1409,88 @@
 
 
     <menuitem name="remote Setups" id="remote" parent="psg_config" action="psg_remote_views" sequence="160"/>
+
+
+
+  <!-- Specification Text -->
+
+      <record model="ir.ui.view" id="psg_site_spec_list">
+      <field name="name">psg.site_spec.tree</field>
+      <field name="model">psg.site_spec</field>
+      <field name="arch" type="xml">
+        <tree string="Site Specification Types">
+            <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="psg_site_spec_form">
+      <field name="name">psg.site_spec.form</field>
+      <field name="model">psg.site_spec</field>
+      <field name="arch" type="xml">
+        <form string="Site Specification Types">
+          <sheet>
+              <group>
+               <group>
+                    <field name="name"/>
+                </group>
+                  <group>
+                    <field name="color"/>
+                      <field name="active"/>
+                </group>
+              </group>
+              <group>
+                  <field name="title_active"/>
+                  <field name="title"  widget="html"/>
+            </group>
+              <group>
+                  <field name="open_active"/>
+                  <field name="opening_block" widget="html"/>
+            </group>
+              <group>
+                <field name="mid_active"/>
+                <field name="mid_block" widget="html"/>
+            </group>
+              <group>
+                <field name="closing_active"/>
+                <field name="closing_block" widget="html"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="site_spec_search" model="ir.ui.view">
+       <field name="name">psg.site_spec.search</field>
+       <field name="model">psg.site_spec</field>
+        <field name="arch" type="xml">
+            <search string="Search Site Specification Types">
+                <field name="name" string="Site Specification Types" domain="[()]"/>
+
+                <group expand="0" string="Group By">
+                        <filter string="Site Specification Types" name="name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+        </search>
+       </field>
+    </record>
+
+     <!-- actions opening views on models exepnes&ndash;&gt;-->
+    <record model="ir.actions.act_window" id="psg_site_spec_views">
+        <field name="name">site_specs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">psg.site_spec</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="site_spec_search"/>
+    </record>
+
+
+    <menuitem name="Site Specification Texts" id="site_spec" parent="psg_config" action="psg_site_spec_views" sequence="200"/>
+
+
 
 
   </data>
