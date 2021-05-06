@@ -1,0 +1,3 @@
+[submodule "travel_timer"]
+	path = travel_timer
+	url = git@github.com:Sapentia-fg/travel_timer.git
